@@ -46,13 +46,19 @@
 	                  	  	  
                               <thead>
                               <tr>
-                                  <th><i class="fa fa-bullhorn"></i> Código</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i> Nome</th>
-                                  <th><i class="fa fa-bookmark"></i> Endereço</th>
-                                  <th><i class=" fa fa-edit"></i> Bairro</th>
-                                  <th><i class="fa fa-bookmark"></i> Telefone</th>
-                                  <th><i class="fa fa-bookmark"></i> Horário de atendimento</th>
-                                  <th><i class="fa fa-bookmark"></i> Foto</th>
+                                  <th><i class="fa fa-cog"></i> Código</th>
+                                  <th><i class="fa fa-book"></i> Nome</th>
+                                  <th><i class="fa fa-map-marker"></i> Cidade+Estado</th>
+                                  <th><i class=" fa fa-map-marker"></i> Endereço+Bairro</th>
+                                  <th><i class="fa fa-phone"></i> Telefone</th>
+                                  <th><i class="fa fa-clock-o"></i> Horário de atendimento</th>
+                                  <th><i class="fa fa-search"></i>
+                                  <form>
+                                        <input type="pesquisar" placeholder="Pesquisar"></i>
+                                        
+                                  </form>
+                                  </th>
+                                  
                                   
                                   <th></th>
                               </tr>
@@ -60,12 +66,12 @@
                               <tbody>
                               <tr>
                                   <td><a href="basic_table.html#">xxxx</a></td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>12000.00$ </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
+                                  <td class="hidden-phone">Centro Social Urbano</td>
+                                  <td>Bagé - Rio Grande do Sul</td>
+                                  <td class="hidden-phone">Rua: Rômulo Freitas - Pedras Brancas</td>
+                                  <td class="hidden-phone">(53) 3241-2651</td>
+                                  <td class="hidden-phone">Segunda a sexta: 08:00 as 18:00</td>
+                               
                                   
                                   
                                   <td>
@@ -73,73 +79,10 @@
                                       <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
                                   </td>
                               </tr>
-                              <tr>
-                                  <td>
-                                      <a href="basic_table.html#">
-                                          Dashgum co
-                                      </a>
-                                  </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>17900.00$ </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                 
-                                  <td>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                      <a href="basic_table.html#">
-                                          Another Co
-                                      </a>
-                                  </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>14400.00$ </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  
-                                  <td>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                      <a href="basic_table.html#">
-                                          Dashgum ext
-                                      </a>
-                                  </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>22000.50$ </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td><a href="basic_table.html#">Total Ltd</a></td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>12120.00$ </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>
-
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
+                              
+                             
+                              
+                              
                               </tbody>
                           </table>
                       </div><!-- /content-panel -->
@@ -151,14 +94,7 @@
 
       <!--main content end-->
       <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              2014 - Alvarez.is
-              <a href="basic_table.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
+
       <!--footer end-->
   </section>
 

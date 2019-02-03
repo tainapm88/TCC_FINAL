@@ -23,9 +23,12 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
   </head>
+  
 
   <body>
+      
 
   <section id="container" >
             <!--CABEÇALHO-->
@@ -46,24 +49,30 @@
 	                  	  	  
                               <thead>
                               <tr>
-                                  <th><i class="fa fa-bullhorn"></i> Código</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i> Nome</th>
-                                  <th><i class="fa fa-bookmark"></i> Quantidade</th>
-                                  <th><i class=" fa fa-edit"></i> Posto</th>
-                                  <th><i class="fa fa-bookmark"></i> Mini bula</th>
-                                  <th><i class="fa fa-bookmark"></i> Foto</th>
-                                  
+                                  <th><i class="fa fa-cog"></i> Código</th>
+                                  <th><i class="fa fa-book"></i> Nome</th>
+                                  <th><i class="fa fa-plus-square"></i> Quantidade</th>
+                                  <th><i class=" fa fa-map-marker"></i> Cidade</th>
+                                  <th><i class="fa fa-map-marker"></i> Estado</th>
+                                  <th><i class="fa fa-hospital-o"></i> Posto de Saúde</th>
+                                  <th><i class="fa fa-search"></i>
+                                  <form>
+                                        <input type="pesquisar" placeholder="Pesquisar"></i>
+                                        
+                                  </form>
+                                  </th>
                                   <th></th>
                               </tr>
                               </thead>
                               <tbody>
                               <tr>
                                   <td><a href="basic_table.html#">xxxx</a></td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>12000.00$ </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
+                                  <td class="hidden-phone">Paracetamol</td>
+                                  <td>100 unidades</td>
+                                  <td class="hidden-phone">Bagé</td>
+                                  <td class="hidden-phone">Rio Grande do Sul</td>
+                                  
+                                  <td class="hidden-phone">Camilo Gomes</td>
                                   
                                   
                                   <td>
@@ -74,67 +83,22 @@
                               <tr>
                                   <td>
                                       <a href="basic_table.html#">
-                                          Dashgum co
+                                          yyyy
                                       </a>
                                   </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>17900.00$ </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
+                                  <td class="hidden-phone">Corticoide</td>
+                                  <td>8 unidades</td>
+                                  <td class="hidden-phone">Centro Social Urbano</td>
+                                  <td class="hidden-phone">Detalhar</td>
+                                  <td class="hidden-phone">Detalhar</td>
                                  
                                   <td>
                                       <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
                                       <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
                                   </td>
                               </tr>
-                              <tr>
-                                  <td>
-                                      <a href="basic_table.html#">
-                                          Another Co
-                                      </a>
-                                  </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>14400.00$ </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  
-                                  <td>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td>
-                                      <a href="basic_table.html#">
-                                          Dashgum ext
-                                      </a>
-                                  </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>22000.50$ </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td><a href="basic_table.html#">Total Ltd</a></td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td>12120.00$ </td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                  
-                                  <td>
-
-                                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                  </td>
-                              </tr>
+                              
+                                                            
                               </tbody>
                           </table>
                       </div><!-- /content-panel -->
@@ -148,7 +112,7 @@
       <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
-              2014 - Alvarez.is
+              2018 - Tainá Pacheco Morais   
               <a href="basic_table.html#" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>

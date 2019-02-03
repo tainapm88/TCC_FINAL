@@ -38,21 +38,27 @@
         
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i> Galleria de Medicamentos</h3>
+          	<h3><i class="fa fa-angle-right"></i> Galeria de Medicamentos</h3>
           	<hr>
+                <th><i class="fa fa-search"></i>
+                                  <form>
+                                        <input type="pesquisar" placeholder="Pesquisar"></i>
+                                        
+                                  </form>
+                                  </th>
 				<div class="row mt">
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
 						<div class="project-wrapper">
 		                    <div class="project">
 		                        <div class="photo-wrapper">
 		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
+		                            	<a class="fancybox" href="assets/img/portfolio/paracetamol.jpg"><img class="img-responsive" src="assets/img/portfolio/paracetamol.jpg" alt=""></a>
 		                            </div>
 		                            <div class="overlay"></div>
 		                        </div>
 		                    </div>
 		                </div>
-                                        <h4><i class=" fa-angle-right"></i> Medicamento 1</h4>
+                                        <h4><i class=" fa-angle-right"></i> Paracetamol</h4>
 					</div><!-- col-lg-4 -->
                                         
 					
@@ -61,13 +67,13 @@
 		                    <div class="project">
 		                        <div class="photo-wrapper">
 		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
+		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/as.jpg" alt=""></a>
 		                            </div>
 		                            <div class="overlay"></div>
 		                        </div>
 		                    </div>
 		                </div>
-                                        <h4><i class=" fa-angle-right"></i> Medicamento 2</h4>
+                                        <h4><i class=" fa-angle-right"></i> AAS</h4>
 					</div><!-- col-lg-4 -->
                                         
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
@@ -75,55 +81,14 @@
 		                    <div class="project">
 		                        <div class="photo-wrapper">
 		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
+		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/novalgina.jpg" alt=""></a>
 		                            </div>
 		                            <div class="overlay"></div>
 		                        </div>
 		                    </div>
 		                </div>
-                                        <h4><i class=" fa-angle-right"></i> Medicamento 3</h4>
-					</div><!-- col-lg-4 -->
-                                        
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-                                        <h4><i class=" fa-angle-right"></i> Medicamento 4</h4>
-					</div><!-- col-lg-4 -->
-                                        
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-                                        <h4><i class=" fa-angle-right"></i> Medicamento 5</h4>
-					</div><!-- col-lg-4 -->
-                                        
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-                                        <h4><i class=" fa-angle-right"></i> Medicamento 6</h4>
+                                    
+                                        <h4><i class=" fa-angle-right"></i> Novalgina</h4>
 					</div><!-- col-lg-4 -->
 					
 					

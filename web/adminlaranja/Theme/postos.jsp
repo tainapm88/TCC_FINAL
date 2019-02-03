@@ -39,6 +39,12 @@
       <section id="main-content">
           <section class="wrapper site-min-height">
           	<h3><i class="fa fa-angle-right"></i> Galeria Postos</h3>
+                <th><i class="fa fa-search"></i>
+                                  <form>
+                                        <input type="pesquisar" placeholder="Pesquisar"></i>
+                                        
+                                  </form>
+                                  </th>
           	<hr>
 				<div class="row mt">
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
@@ -46,13 +52,13 @@
 		                    <div class="project">
 		                        <div class="photo-wrapper">
 		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
+		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/centrosocial.jpg" alt=""></a>
 		                            </div>
 		                            <div class="overlay"></div>
 		                        </div>
 		                    </div>
 		                </div>
-                                        <h4><i class=" fa-angle-right"></i> Posto 1</h4>
+                                        <h4><i class=" fa-angle-right"></i> Centro Social Urbano</h4>
 					</div><!-- col-lg-4 -->
                                         
 					
@@ -61,13 +67,13 @@
 		                    <div class="project">
 		                        <div class="photo-wrapper">
 		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
+		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/camilogomes.jpg" alt=""></a>
 		                            </div>
 		                            <div class="overlay"></div>
 		                        </div>
 		                    </div>
 		                </div>
-                                        <h4><i class=" fa-angle-right"></i> Posto 2</h4>
+                                        <h4><i class=" fa-angle-right"></i> Camilo Gomes</h4>
 					</div><!-- col-lg-4 -->
                                         
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
@@ -75,70 +81,19 @@
 		                    <div class="project">
 		                        <div class="photo-wrapper">
 		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
+		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/pradovelho.jpg" alt=""></a>
 		                            </div>
 		                            <div class="overlay"></div>
 		                        </div>
 		                    </div>
 		                </div>
-                                        <h4><i class=" fa-angle-right"></i> Posto 3</h4>
+                                        <h4><i class=" fa-angle-right"></i> Prado Velho</h4>
 					</div><!-- col-lg-4 -->
                                         
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-                                        <h4><i class=" fa-angle-right"></i> Posto 4</h4>
-					</div><!-- col-lg-4 -->
+                                       
                                         
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-                                        <h4><i class=" fa-angle-right"></i> Posto 5</h4>
-					</div><!-- col-lg-4 -->
                                         
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/portfolio/port05.jpg"><img class="img-responsive" src="assets/img/portfolio/port05.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-                                        <h4><i class=" fa-angle-right"></i> Posto 6</h4>
-					</div><!-- col-lg-4 -->
-					
-					
-				</div><!-- /row -->
-
-				<div class="row mt">
-					
-					
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						
-					</div><!-- col-lg-4 -->
-					
-					
-				</div><!-- /row -->
-
+                                        
 				<div class="row mt mb">
 					
 					

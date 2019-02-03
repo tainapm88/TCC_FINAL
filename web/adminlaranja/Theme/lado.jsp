@@ -16,13 +16,13 @@
               	  	
                   <li class="mt">
                       <a href="index.jsp">
-                          <i class="fa fa-dashboard"></i>
+                          <i class="fa fa-home" style="font-size:24px"></i>
                           <span>Início</span>
                       </a>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
-                          <i class=" fa fa-bar-chart-o"></i>
+                          <i class="fa fa-medkit" style="font-size:24px"></i>
                           <span>Medicamentos</span>
                       </a>
                       <ul class="sub">
@@ -33,7 +33,7 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
-                          <i class=" fa fa-bar-chart-o"></i>
+                          <i class="fa fa-hospital-o" style="font-size:24px;"></i>
                           <span>Postos</span>
                       </a>
                       <ul class="sub">
@@ -41,6 +41,13 @@
                           <li><a  href="listagemposto.jsp">Listagem</a></li>
                           <li><a  href="postos.jsp">Galeria</a></li>
                       </ul>
+                  </li>
+                  
+                  <li class="mt">
+                      <a href="perfil.jsp">
+                          <i class="fa fa-user" style="font-size:24px"></i>
+                          <span>Perfil</span>
+                      </a>
                   </li>
               </ul>
               <!-- sidebar menu end-->

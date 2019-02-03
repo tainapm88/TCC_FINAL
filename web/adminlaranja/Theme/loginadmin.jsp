@@ -7,7 +7,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>DASHGUM - Bootstrap Admin Template</title>
+    <title>FacilitaSUS</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -34,18 +34,18 @@
 	  <div id="login-page">
 	  	<div class="container">
 	  	
-		      <form class="form-login" action="index.html">
-		        <h2 class="form-login-heading">Login</h2>
+		      <form class="form-login" action="index.jsp" >
+		        <h2 class="form-login-heading" >Login</h2>
 		        <div class="login-wrap">
-		            <input type="text" class="form-control" placeholder="Usuário" autofocus>
+		            <input type="text" class="form-control" placeholder="Email" autofocus>
 		            <br>
 		            <input type="password" class="form-control" placeholder="Senha">
-		            <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> ENTRAR</button>
+		            <button class="btn btn-theme btn-block" href="index.jsp" type="submit"><i class="fa fa-lock"></i> ENTRAR</button>
 		            <hr>
 
 		            <div class="registration">
 		                Você ainda não possui uma conta?<br/>
-		                <a class="" href="cadastroadmin.html">
+		                <a class="" href="cadastroadmin.jsp">
 		                    Criar conta aqui
                                     
 		                </a>
@@ -68,7 +68,7 @@
 		                      </div>
 		                      <div class="modal-footer">
 		                          <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-		                          <button class="btn btn-theme" type="button">Submit</button>
+		                          <button class="btn btn-theme" type="button" >Submit</button>
 		                      </div>
 		                  </div>
 		              </div>
@@ -88,7 +88,7 @@
     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
     <script type="text/javascript" src="assets/js/jquery.backstretch.min.js"></script>
     <script>
-        $.backstretch("assets/img/login-bg.jpg", {speed: 500});
+        $.backstretch("assets/img/branco.jpg", {speed: 500});
     </script>
 
 

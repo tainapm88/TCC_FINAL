@@ -31,19 +31,19 @@
 
         <section id="container" >
       <!--CABEÇALHO-->
+      
       <%@include file="cabecalho.jsp" %>
 
         <%@include file="lado.jsp" %>
 
             <section id="main-content">
                 <section class="wrapper">
-                    <h3><i class="fa fa-angle-right"></i> Medicamentos</h3>
+                    <h3><i class="fa fa-angle-right"></i>Cadastro de Medicamentos</h3>
 
                     <!-- BASIC FORM ELELEMNTS -->
                     <div class="row mt">
                         <div class="col-lg-12">
                             <div class="form-panel">
-                                <h4 class="mb"><i class="fa fa-angle-right"></i> Cadastro</h4>
                                 <form class="form-horizontal style-form" method="get">
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-2 control-label">Código</label>
@@ -65,15 +65,62 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Estado</label>
+                                        <div class="col-sm-10">
+
+                                            <select class="form-control">
+                                                <option>Acre(AC)</option>
+                                                <option>Alagoas(AL)</option>
+                                                <option>Amapá(AP)</option>
+                                                <option>Amazonas(AM)</option>
+                                                <option>Bahia(BA)</option>
+                                                <option>Ceará(CE)</option>
+                                                <option>Distrito Federal(DF)</option>
+                                                <option>Espírito Santo(ES)</option>
+                                                <option>Goiás(GO)</option>
+                                                <option>Maranhão(MA)</option>
+                                                <option>Mato Grosso(MT)</option>
+                                                <option>Mato Grosso do Sul(MS)</option>
+                                                <option>Minas Gerais(MG)</option>
+                                                <option>Pará(PA)</option>
+                                                <option>Paraíba(PB)</option>
+                                                <option>Paraná(PR)</option>
+                                                <option>Pernambuco(PE)</option>
+                                                <option>Piauí(PI)</option>
+                                                <option>Rio de Janeiro(RJ)</option>
+                                                <option>Rio Grande do Norte(RN)</option>
+                                                <option>Rio Grande do Sul(RS)</option>
+                                                <option>Rondônia(RO)</option>
+                                                <option>Roraima(RR)</option>
+                                                <option>Santa Catarina(SC)</option>
+                                                <option>São Paulo(SP)</option>
+                                                <option>Sergipe(SE)</option>
+                                                <option>Tocantins(TO)</option>
+                                            </select>
+                                            <br>
+                                        </div>
+                         </div>
+                         <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Cidade</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" id="texto" list="historico" >                    
+                                            <datalist id="historico">
+                                                <option value="Bagé"></option>
+                                                <option value="Pelotas"></option>
+                                                <option value="Porto Alegre"></option>
+                                            </datalist>
+                                        </div>
+                          </div>
+                                    <div class="form-group">
                                         <label class="col-sm-2 col-sm-2 control-label">Posto de saúde</label>
                                         <div class="col-sm-10">
 
                                             <select class="form-control">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <option>Centro Social Urbano</option>
+                                                <option>Camilo Gomes</option>
+                                                <option>São Bernardo</option>
+                                                <option>CAIC</option>
+                                                <option>Malafaia</option>
                                             </select>
                                             <br>
 
@@ -81,27 +128,12 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Mini Bula</label>
+                                        <label class="col-sm-2 col-sm-2 control-label">Bula</label>
                                         <div class="col-sm-10">
                                         <textarea name="message" id="message" class="form-control " cols="30" rows="8"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Tipo</label>
-                                        <div class="col-sm-10">
-
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
-                                            </label>
-
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group">
                                         <label class="col-sm-2 col-sm-2 control-label">Foto</label>
                                         <div class="col-sm-10">

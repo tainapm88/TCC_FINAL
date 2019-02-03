@@ -37,7 +37,7 @@
         
       <section id="main-content">
           <section class="wrapper">
-          	<h3><i class="fa fa-angle-right"></i> Cadastro Administrador</h3>
+          	<h3><i class="fa fa-angle-right"></i> Administrador</h3>
           	
           	<!-- BASIC FORM ELELEMNTS -->
           	<div class="row mt">
@@ -50,34 +50,10 @@
                                   <input type="text" class="form-control">
                               </div>
                           </div>
-                          
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nome</label>
                               <div class="col-sm-10">
                                   <input type="text" class="form-control">
-                              </div>
-                          </div>
-                          
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Sobrenome</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control">
-                              </div>
-                          </div>
-
-                          
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">CPF</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control">
-                                  <span class="help-block">Ex.: 00011122233</span>
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Data de nascimento</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control">
-                                  <span class="help-block">Ex.: 00/00/0000</span>
                               </div>
                           </div>
                           <div class="form-group">
@@ -87,55 +63,6 @@
                                   <span class="help-block">Ex.: Rua - nº</span>
                               </div>
                           </div>
-                         <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Estado</label>
-                                        <div class="col-sm-10">
-
-                                            <select class="form-control">
-                                                <option>Acre(AC)</option>
-                                                <option>Alagoas(AL)</option>
-                                                <option>Amapá(AP)</option>
-                                                <option>Amazonas(AM)</option>
-                                                <option>Bahia(BA)</option>
-                                                <option>Ceará(CE)</option>
-                                                <option>Distrito Federal(DF)</option>
-                                                <option>Espírito Santo(ES)</option>
-                                                <option>Goiás(GO)</option>
-                                                <option>Maranhão(MA)</option>
-                                                <option>Mato Grosso(MT)</option>
-                                                <option>Mato Grosso do Sul(MS)</option>
-                                                <option>Minas Gerais(MG)</option>
-                                                <option>Pará(PA)</option>
-                                                <option>Paraíba(PB)</option>
-                                                <option>Paraná(PR)</option>
-                                                <option>Pernambuco(PE)</option>
-                                                <option>Piauí(PI)</option>
-                                                <option>Rio de Janeiro(RJ)</option>
-                                                <option>Rio Grande do Norte(RN)</option>
-                                                <option>Rio Grande do Sul(RS)</option>
-                                                <option>Rondônia(RO)</option>
-                                                <option>Roraima(RR)</option>
-                                                <option>Santa Catarina(SC)</option>
-                                                <option>São Paulo(SP)</option>
-                                                <option>Sergipe(SE)</option>
-                                                <option>Tocantins(TO)</option>
-                                            </select>
-                                            <br>
-                                        </div>
-                         </div>
-                         <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Cidade</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" id="texto" list="historico" >                    
-                                            <datalist id="historico">
-                                                <option value="Bagé"></option>
-                                                <option value="Pelotas"></option>
-                                                <option value="Porto Alegre"></option>
-                                            </datalist>
-                                        </div>
-                          </div>
-                          
-                          
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
                               <div class="col-sm-10">
@@ -143,23 +70,15 @@
                                   <span class="help-block">Ex.:(00)123456789</span>
                               </div>
                           </div>
-                          <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Sexo</label>
-                                        <div class="col-sm-10">
-
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" id="inlineCheckbox1" value="option1"> Feminino
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" id="inlineCheckbox2" value="option2"> Masculino
-                                            </label>
-                                            
-
-                                        </div>
-                          </div>
-
+                          
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Email</label>
+                              <div class="col-sm-10">
+                                  <input type="text" class="form-control">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Usuário</label>
                               <div class="col-sm-10">
                                   <input type="text" class="form-control">
                               </div>
@@ -176,7 +95,7 @@
           		</div><!-- col-lg-12-->      	
           	</div><!-- /row -->
                  <div class="showback">
-                        <a href="index.jsp"><input type="button" class="btn btn-primary btn-lg btn-block" value="Cadastrar"></a>
+                        <a href="index.jsp"><input type="button" class="btn btn-primary btn-lg btn-block" value="Salvar"></a>
                     </div><!--/showback -->
 
           	
