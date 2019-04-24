@@ -38,5 +38,12 @@
             <!--logo start-->
             <a href="index.jsp" class="logo"><b>FACILITASUS</b></a>
             <!--logo end-->
+            
+            <div class="top-menu">
+            	<ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="adminlogin.jsp">SAIR</a></li>
+            	</ul>
+            </div>
+
 
         </header>

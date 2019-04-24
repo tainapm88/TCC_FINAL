@@ -92,8 +92,8 @@ a, a:hover, a:focus {
 
 .btn-theme {
   color: #fff;
-  background-color: #68dff0;
-  border-color: #48bcb4;
+  background-color: #AE0000;
+  border-color: #AE0000;
 }
 .btn-theme:hover,
 .btn-theme:focus,
@@ -101,7 +101,7 @@ a, a:hover, a:focus {
 .btn-theme.active,
 .open .dropdown-toggle.btn-theme {
   color: #fff;
-  background-color: #48bcb4;
+  background-color: #AE0000;
   border-color: #48bcb4;
 }
 
@@ -293,6 +293,7 @@ ul.sidebar-menu {
 #sidebar > ul > li.active > ul.sub, #sidebar > ul > li > ul.sub > li > a {
     display: block;
 }
+
 
 ul.sidebar-menu li ul.sub li{
     background: #424a5d;
@@ -1673,7 +1674,7 @@ PANELS CONFIGURATIONS
   display: block;
   position: relative;
   overflow: hidden;
-  background-color: #68dff0;
+  background-color: #FFD777;
   -webkit-transition: background-color 0.4s;
   -moz-transition: background-color 0.4s;
   -o-transition: background-color 0.4s;
@@ -1693,7 +1694,7 @@ PANELS CONFIGURATIONS
 }
 
 .project:hover .photo-wrapper {
-  background-color: #68dff0;
+  background-color: #FFD777;
 	background-image:url(../img/zoom.png);
 	background-repeat:no-repeat;
 	background-position:center;
@@ -1708,7 +1709,19 @@ PANELS CONFIGURATIONS
   filter: alpha(opacity=4000);
   opacity: 0.1;
   filter: alpha(opacity=40);
+  
+ 
+  
+  
 }
+
+.img-circle{
+     border-radius: 50%;
+}
+
+
+
+
 .project:hover .overlay {
   opacity: 100;
   filter: alpha(opacity=10000);
@@ -1927,7 +1940,7 @@ label {
 .form-login {
 	max-width: 330px;
 	margin: 100px auto 0;
-	background: #fff;
+	background: #FFD777;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
@@ -1936,10 +1949,10 @@ label {
 	margin: 0;
 	padding: 25px 20px;
 	text-align: center;
-	background: #68dff0;
+	background: #AE0000;
 	border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
-	color: #fff;
+	color: #FFD777;
 	font-size: 20px;
 	text-transform: uppercase;
 	font-weight: 300;
@@ -1960,7 +1973,7 @@ label {
 /*LOCK SCREEN CONF*/
 #showtime {
 	width: 100%;
-	color: #fff;
+	color: #AE0000;
 	font-size: 90px;
 	margin-bottom: 30px;
 	margin-top: 250px;
@@ -1978,7 +1991,7 @@ label {
 }
 
 .lock-screen a:hover {
-	color: #48cfad
+	color: #48cfad;
 }
 
 .lock-screen i {

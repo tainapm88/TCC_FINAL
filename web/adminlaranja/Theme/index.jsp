@@ -1,3 +1,6 @@
+<%@include file="cabecalho.jsp" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,12 +35,7 @@
   <body>
 
   <section id="container" >
-      <!--CABEÇALHO-->
-      <%@include file="cabecalho.jsp" %>
-
-        <%@include file="lado.jsp" %>
-            
-            
+      <%@include file="lado.jsp" %>
 
       <!--sidebar end-->
       
@@ -52,11 +50,12 @@
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
 						<div class="project-wrapper">
 		                    <div class="project">
-		                        <div class="photo-wrapper">
+		                        <div class="redondo">
 		                            <div class="photo">
 		                            	<a class="fancybox" href="assets/img/fotos/posto2.jpg">
+                                                    
                                                     <!-- imagem quando busca e amplia --> 
-                                                    <img class="img-responsive" src="assets/img/fotos/posto2.jpg" alt=""></a>
+                                                    <img class="img-circle" src="assets/img/fotos/posto2.jpg" alt="" width="300px" height="300px" ></a>
                                                     <!-- imagem da tela -->
                                                     
                                             </div>
@@ -70,11 +69,12 @@
 					
 					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
 						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
+		                    <div class="project" >
+		                        <div class="redondo">
 		                            <div class="photo">
-		                            	<a class="fancybox" href="assets/img/fotos/medadmin1.jpg"><img class="img-responsive" src="assets/img/fotos/medadmin1.jpg" alt=""></a>
-		                            </div>
+                                                    <img class="img-circle" src="assets/img/fotos/medadmin1.jpg" alt=""width="300px" height="300px"></a>
+                                                
+                                                    </div>
 		                            <div class="overlay"></div>
 		                        </div>
 		                    </div>
@@ -94,6 +94,7 @@
 					
 					
 				</div><!-- /row -->
+                                
 
 				<div class="row mt mb">
 					

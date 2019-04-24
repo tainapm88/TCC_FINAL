@@ -12,7 +12,7 @@
               <ul class="sidebar-menu" id="nav-accordion">
               
               	  <p class="centered"><a href="profile.html"><img src="assets/img/friends/fr-05.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">Nome da pessoa</h5>
+              	  <h5 class="centered">Administrador</h5>
               	  	
                   <li class="mt">
                       <a href="index.jsp">
@@ -26,9 +26,8 @@
                           <span>Medicamentos</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="cadastromed.jsp">Cadastro</a></li>
-                          <li><a  href="listagemmed.jsp">Listagem</a></li>
-                          <li><a  href="medicamentos.jsp">Galeria</a></li>
+                          <li><a  href="medcadastro.jsp">Cadastro</a></li>
+                          <li><a  href="medlistagem.jsp">Listagem</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -37,14 +36,13 @@
                           <span>Postos</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="cadastroposto.jsp">Cadastro</a></li>
-                          <li><a  href="listagemposto.jsp">Listagem</a></li>
-                          <li><a  href="postos.jsp">Galeria</a></li>
+                          <li><a  href="postocadastro.jsp">Cadastro</a></li>
+                          <li><a  href="postolistagem.jsp">Listagem</a></li>
                       </ul>
                   </li>
                   
                   <li class="mt">
-                      <a href="perfil.jsp">
+                      <a href="adminalterar.jsp">
                           <i class="fa fa-user" style="font-size:24px"></i>
                           <span>Perfil</span>
                       </a>

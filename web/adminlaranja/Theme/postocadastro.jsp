@@ -19,7 +19,7 @@
     String classe = "";
     
     Posto obj = new Posto();
-    PostoDAO dao = new PostoDAO();
+    PostoDAO pdao = new PostoDAO();
 
     EstadoDAO edao = new EstadoDAO();
     List<Estado> elistar = edao.listar();
@@ -32,54 +32,24 @@
 
     
      if(request.getMethod().equals("POST")){
-        //pego uma lista de estados(com mesmo name)
-        String[] estadosid = request.getParameter("estados").split(";");
-        String[] cidadesid = request.getParameter("cidades").split(";");
-        //popular o estado
-        if (request.getParameter("txtPostoNome") != null && 
-                request.getParameter("txtPostoEndereco") != null && 
-                request.getParameter("txtPostoBairro") != null && 
-                request.getParameter("txtEstadoNome") != null && 
-                request.getParameter("txtCidadeNome") != null && 
-                request.getParameter("txtPostoEspecializacao") != null && 
-                request.getParameter("txtPostoTelefone") != null) 
-        {
-    
+
     if (request.getParameter("txtPostoNome") != null) {
+        obj.setPostocod(Integer.parseInt(request.getParameter("txtPostoCodigo")));
         obj.setPostonome(request.getParameter("txtPostoNome"));
         obj.setPostoend(request.getParameter("txtPostoEndereco"));
         obj.setPostobairro(request.getParameter("txtPostoBairro"));
-        
-        e.setNome(request.getParameter("txtEstadoNome"));
-        m.setMunicipnome(request.getParameter("txtCidadeNome"));
+        e = edao.buscarPorChavePrimaria(Long.parseLong(request.getParameter("txtEstadoNome")));
+        m = mdao.buscarPorChavePrimaria(request.getParameter("txtCidadeNome"));
         obj.setId(e);
         obj.setMunicipibge(m);
-        //obj.getPostohorarioatend(request.getParameter("txtPostoHorario"));
+        
+        obj.setPostohorarioatend(request.getParameter("txtPostoHorario"));
         obj.setPostoespecializacao(request.getParameter("txtPostoEspecializacao"));
         obj.setPostotelefone(request.getParameter("txtPostoTelefone"));
         obj.setPostofoto(request.getParameter("txtPostoFoto"));
-        
-        obj.setPostohorarioatend(StormData.formata(request.getParameter("txtPostoHorario")));
-        
 
-        
-        List<Estado> listaestados = new ArrayList<>();
-            for (String id : estadosid) {
-                Integer idinteger = Integer.parseInt(id);
-                listaestados.add(edao.buscarPorChavePrimaria(idinteger));
-            }
-            obj.setId(e);
-            
-        List<Municipibge> listacidades = new ArrayList<>();
-            for (String id : cidadesid) {
-                Integer idinteger = Integer.parseInt(id);
-                listacidades.add(mdao.buscarPorChavePrimaria(idinteger));
-            }
-            obj.setMunicipibge(m);
-            
-        
-
-        Boolean resultado = dao.incluir(obj);
+          
+        Boolean resultado = pdao.incluir(obj);
 
         if (resultado) {
             msg = "Registro cadastrado com sucesso";
@@ -88,11 +58,15 @@
             msg = "Não foi possível cadastrar";
             classe = "alert-danger";
         }
+        
+         String redirectURL = "postolistagem.jsp";
+        response.sendRedirect(redirectURL);
+     
     } 
     
-         dao.fecharConexao();
+         pdao.fecharConexao();
         }
-     }
+     
 %>
 
 
@@ -137,18 +111,18 @@
                 <div class="alert <%=classe%>">
                 <%=msg%>
             </div>
-            <form action="../UploadWS" method="post" enctype="multipart/form-data">
+            <form action="../../UploadWS" method="post" enctype="multipart/form-data">
           	
           	<!-- BASIC FORM ELELEMNTS -->
           	<div class="row mt">
           		<div class="col-lg-12">
                   <div class="form-panel">
                   	  
-                      <form class="form-horizontal style-form" method="get">
+                      
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Código</label>
                               <div class="col-sm-10">
-                                  <input type="password"  class="form-control" placeholder="">
+                                  <input type="text"  name="txtPostoCodigo" class="form-control">
                               </div>
                           </div>
                           <div class="form-group">
@@ -171,18 +145,19 @@
                               </div>
                           </div>
 
-                          <div class="form-group">
+                          
+                                
+                         <div class="form-group">
                             <label class="col-sm-2 col-sm-2 control-label">Estado</label>
                             <div class="col-sm-10">
                                 
-                            <select id="inputEstado" class="form-control">
-                               
+                            <select id="inputEstado" name="txtEstadoNome" class="form-control">
                                 <option selected>
                                     <%
                            for (Estado iteme : elistar) {
                                
                          %>
-                         <option selected="<%=iteme.getId()%>">
+                         <option value = "<%=iteme.getId()%>">
                              <%=iteme.getNome()%>
                          </option>
                          <%
@@ -192,33 +167,32 @@
                             </select>
                          </div>
                                 
-                                
-                         
+
                          <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">Cidade</label>
-                            <div class="col-sm-10">
-                                
-                            <select id="inputEstado" class="form-control">
-                                <option selected>
-                                    <%
-                           for (Municipibge itemm : mlistar) {
-                               
-                         %>
-                         <option value = "<%=itemm.getMunicipibge()%>">
-                             <%=itemm.getMunicipnome()%>
-                         </option>
-                         <%
-                             }
-                         %>
-                                </option>
-                            </select>
-                         </div>
+                             <label class="col-sm-2 col-sm-2 control-label">Cidade</label>
+                             <div class="col-sm-10">
+
+                                 <select id="inputEstado" name="txtCidadeNome"  class="form-control">
+                                     <option selected>
+                                         <%
+                                             for (Municipibge itemm : mlistar) {
+
+                                         %>
+                                     <option value = "<%=itemm.getMunicipibge()%>">
+                                         <%=itemm.getMunicipnome()%>
+                                     </option>
+                                     <%
+                                         }
+                                     %>
+                                     </option>
+                                 </select>
+                             </div>
 
                          
                           <div class="form-group">
                                 <label class="col-sm-2 col-sm-2 control-label">Horário de atendimento</label>
                                     <div class="col-sm-10">
-                                        <textarea name="message" id="message" name="txtPostoHorario" class="form-control " cols="30" rows="8">Segunda-feira:
+                                        <textarea  id="message" name="txtPostoHorario" class="form-control " cols="30" rows="8">Segunda-feira:
 Terça-feira:
 Quarta-feira:
 Quinta-feira:
@@ -238,7 +212,7 @@ Domingo:
                           <div class="form-group">
                                 <label class="col-sm-2 col-sm-2 control-label">Especialização</label>
                                     <div class="col-sm-10">
-                                        <textarea name="message" name="txtPostoEspecializacao" id="message" class="form-control " cols="30" rows="8">
+                                        <textarea  name="txtPostoEspecializacao" id="message" class="form-control " cols="30" rows="8">
                                         </textarea>
                                     </div>
                           </div>
@@ -250,16 +224,16 @@ Domingo:
                                   </div>
 
                               </div>
-                      </form>
-                  </div>
+                      
+                          </div>
           		</div><!-- col-lg-12-->   
                          
           	</div><!-- /row -->
                 
                 <div class="showback">
-                        <a href="listagemposto.jsp"><input type="button" class="btn btn-primary btn-lg btn-block" value="Cadastrar"></a>
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Cadastrar"></a>
                     </div><!--/showback -->
-            </form>
+                      </form>
                 
 		</section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
@@ -268,7 +242,7 @@ Domingo:
       <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
-              2018 - Tainá Pacheco Morais
+              2019 - Tainá Pacheco Morais
               <a href="form_component.html#" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>

@@ -958,6 +958,7 @@ img {
 }
 .img-circle {
   border-radius: 50%;
+  position: center;
 }
 hr {
   margin-top: 20px;
@@ -2632,7 +2633,7 @@ select[multiple].input-lg {
 }
 .help-block {
   display: block;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 10px;
   color: #737373;
 }
@@ -6013,7 +6014,7 @@ button.close {
 .visible-lg-inline-block {
   display: none !important;
 }
-@media (max-width: 767px) {
+@media (max-width: 800px) {
   .visible-xs {
     display: block !important;
   }
