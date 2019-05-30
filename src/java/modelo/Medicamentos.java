@@ -32,7 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Medicamentos.findByMednome", query = "SELECT m FROM Medicamentos m WHERE m.mednome = :mednome")
     , @NamedQuery(name = "Medicamentos.findByMedqtdade", query = "SELECT m FROM Medicamentos m WHERE m.medqtdade = :medqtdade")
     , @NamedQuery(name = "Medicamentos.findByMedfoto", query = "SELECT m FROM Medicamentos m WHERE m.medfoto = :medfoto")
-    , @NamedQuery(name = "Medicamentos.findByMedbula", query = "SELECT m FROM Medicamentos m WHERE m.medbula = :medbula")})
+    , @NamedQuery(name = "Medicamentos.findByMedbula", query = "SELECT m FROM Medicamentos m WHERE m.medbula = :medbula")
+    , @NamedQuery(name = "Medicamentos.findFilter", query = "SELECT m FROM Medicamentos m"
+    + " WHERE m.mednome like :filtro")})   
 public class Medicamentos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,12 +55,6 @@ public class Medicamentos implements Serializable {
     @Basic(optional = false)
     @Column(name = "medbula")
     private String medbula;
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Estado id;
-    @JoinColumn(name = "municipibge", referencedColumnName = "municipibge")
-    @ManyToOne(optional = false)
-    private Municipibge municipibge;
     @JoinColumn(name = "postocod", referencedColumnName = "postocod")
     @ManyToOne(optional = false)
     private Posto postocod;
@@ -116,22 +112,6 @@ public class Medicamentos implements Serializable {
 
     public void setMedbula(String medbula) {
         this.medbula = medbula;
-    }
-
-    public Estado getId() {
-        return id;
-    }
-
-    public void setId(Estado id) {
-        this.id = id;
-    }
-
-    public Municipibge getMunicipibge() {
-        return municipibge;
-    }
-
-    public void setMunicipibge(Municipibge municipibge) {
-        this.municipibge = municipibge;
     }
 
     public Posto getPostocod() {

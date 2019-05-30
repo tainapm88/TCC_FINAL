@@ -1,21 +1,12 @@
 <%@page import="util.StormData"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Date"%>
-<%@page import="modelo.Estado"%>
-<%@page import="Dao.EstadoDAO"%>
-
-<%@page import="modelo.Municipibge"%>
-<%@page import="Dao.MunicipibgeDAO"%>
-
-<%@page import="Dao.PostoDAO"%>
-<%@page import="modelo.Posto"%>
 
 <%@page import="Dao.AdminDAO"%>
 <%@page import="modelo.Admin"%>
 
 <%@page import="java.util.List"%>
 <%@include file="cabecalho.jsp" %>
-<%@include file="lado.jsp" %>
 
 <%
     String msg = "";
@@ -23,16 +14,6 @@
     
     Admin obj = new Admin();
     AdminDAO dao = new AdminDAO();
-    
-    EstadoDAO edao = new EstadoDAO();
-    List<Estado> elistar = edao.listar();
-    Estado e = new Estado();
-    
-    
-    MunicipibgeDAO mdao = new MunicipibgeDAO();
-    List<Municipibge> mlistar = mdao.listar();
-    Municipibge m = new Municipibge();
-
     
      if(request.getMethod().equals("POST")){
 
@@ -42,22 +23,25 @@
         obj.setAdminsobrenome(request.getParameter("txtAdminSobrenome"));
         obj.setAdmincpf(request.getParameter("txtAdminCpf"));
         obj.setAdmindatanasc(StormData.formata(request.getParameter("txtAdminDataNasc")));
-        obj.setAdminend(request.getParameter("txtAdminEndereco"));
+        obj.setAdminnumero(request.getParameter("numero"));
         obj.setAdmintelefone(request.getParameter("txtAdminTelefone"));
         obj.setAdminsexo(request.getParameter("txtAdminSexo"));
         obj.setAdminemail(request.getParameter("txtAdminEmail"));
         obj.setAdminsenha(request.getParameter("txtAdminSenha"));
-        e = edao.buscarPorChavePrimaria(Long.parseLong(request.getParameter("txtEstadoNome")));
-        m = mdao.buscarPorChavePrimaria(request.getParameter("txtCidadeNome"));
-        obj.setId(e);
-        obj.setMunicipibge(m);
+
+        obj.setAdmincep(request.getParameter("cep"));
+        obj.setAdminrua(request.getParameter("rua"));
+        obj.setAdminbairro(request.getParameter("bairro"));
+        obj.setAdmincidade(request.getParameter("cidade"));
+        obj.setAdminestado(request.getParameter("uf"));
+
         
 
         Boolean resultado = dao.alterar(obj);
         
 
         if (resultado) {
-            msg = "Registro cadastrado com sucesso";
+            msg = "Registro alterado com sucesso";
             classe = "alert-success";
         } else {
             msg = "Não foi possível cadastrar";
@@ -88,30 +72,76 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+ 
+        <script type="text/javascript" >
 
-    <title>Cadastro Administrador</title>
+            function limpa_formulário_cep() {
+                //Limpa valores do formulário de cep.
+                document.getElementById('rua').value = ("");
+                document.getElementById('bairro').value = ("");
+                document.getElementById('cidade').value = ("");
+                document.getElementById('uf').value = ("");
+            }
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="assets/js/bootstrap-datepicker/css/datepicker.css" />
-    <link rel="stylesheet" type="text/css" href="assets/js/bootstrap-daterangepicker/daterangepicker.css" />
-        
-    <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style-responsive.css" rel="stylesheet">
+            function meu_callback(conteudo) {
+                if (!("erro" in conteudo)) {
+                    //Atualiza os campos com os valores.
+                    document.getElementById('rua').value = (conteudo.logradouro);
+                    document.getElementById('bairro').value = (conteudo.bairro);
+                    document.getElementById('cidade').value = (conteudo.localidade);
+                    document.getElementById('uf').value = (conteudo.uf);
+                } //end if.
+                else {
+                    //CEP não Encontrado.
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            }
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+            function pesquisacep(valor) {
+
+                //Nova variável "cep" somente com dígitos.
+                var cep = valor.replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if (validacep.test(cep)) {
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        document.getElementById('rua').value = "...";
+                        document.getElementById('bairro').value = "...";
+                        document.getElementById('cidade').value = "...";
+                        document.getElementById('uf').value = "...";
+
+                        //Cria um elemento javascript.
+                        var script = document.createElement('script');
+
+                        //Sincroniza com o callback.
+                        script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+                        //Insere script no documento e carrega o conteúdo.
+                        document.body.appendChild(script);
+
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    limpa_formulário_cep();
+                }
+            }
+            ;
+
+        </script>
   </head>
 
   <body>
@@ -126,29 +156,30 @@
                 <%=msg%>
             </div>
           	
+            <form action="../../UploadWS" method="post" enctype="multipart/form-data">
           	<!-- BASIC FORM ELELEMNTS -->
           	<div class="row mt">
           		<div class="col-lg-12">
                   <div class="form-panel">
-                      <form class="form-horizontal style-form">
+                      
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Código de identificação</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" type="text" placeholder="<%=obj.getAdmincod()%>" readonly>
+                                  <input class="form-control" type="text" name="txtAdminCodigo" readonly value="<%=obj.getAdmincod()%>">
                               </div>
                           </div>
                           
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nome</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" type="text" placeholder readonly value ="<%=obj.getAdminnome()%>">
+                                  <input class="form-control" type="text" name="txtAdminNome" readonly value="<%=obj.getAdminnome()%>">
                               </div>
                           </div>
                           
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Sobrenome</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" type="text" placeholder="Colocar aqui o Sobrenome já cadastrado" readonly>
+                                  <input class="form-control" type="text" name="txtAdminSobrenome" readonly value="<%=obj.getAdminsobrenome()%>">
                               </div>
                           </div>
 
@@ -156,18 +187,55 @@
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">CPF</label>
                               <div class="col-sm-10">
-                                  <input class="form-control" type="text" readonly value="<%=obj.getAdmincpf()%>">
+                                  <input class="form-control" type="text" name="txtAdminCpf" readonly value="<%=obj.getAdmincpf()%>">
                               </div>
                           </div>
-
+                              
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Endereço</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" placeholder="Rua dos Bobos, nº 0" required value="<%=obj.getAdminend()%>">
-                              </div>
-                          </div>
+                                        <label class="col-sm-2 col-sm-2 control-label">Cep:</label>
+                                        <div class="col-sm-10">
+                                            <input name="cep" type="text" id="cep" value="" class="form-control" maxlength="9"
+                                                   onblur="pesquisacep(this.value);" required value="<%=obj.getAdmincep()%>"/>
+                                        </div>
+                                    </div>
 
-                          
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Rua:</label>
+                                        <div class="col-sm-10">
+                                            <input name="rua" type="text" id="rua" class="form-control" required="<%=obj.getAdminrua()%>" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Número</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="numero" class="form-control">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Bairro:</label>
+                                        <div class="col-sm-10">
+                                            <input name="bairro" type="text" id="bairro" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Cidade:</label>
+                                        <div class="col-sm-10">
+                                            <input name="cidade" type="text" id="cidade" class="form-control">
+                                        </div>             
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Estado:</label>
+                                        <div class="col-sm-10">
+                                            <input name="uf" type="text" id="uf" class="form-control">
+                                        </div>           
+                                    </div>
+
+                         
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
                               <div class="col-sm-10">
@@ -187,15 +255,11 @@
                                   <input type="text" class="form-control" placeholder="12345678" required value="<%=obj.getAdminsenha()%>">
                               </div>
                           </div>
-                      </form>
                   </div>
-          		</div><!-- col-lg-12-->      	
-          	</div><!-- /row -->
                  <div class="showback">
-                        <a href="index.jsp"><input type="button" class="btn btn-primary btn-lg btn-block" value="Alterar"></a>
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Alterar">
                     </div><!--/showback -->
-
-          	
+                      </form>
 		</section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
 

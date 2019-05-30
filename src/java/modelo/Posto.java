@@ -14,8 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,15 +29,25 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "posto")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Posto.findAll", query = "SELECT p FROM Posto p")
+      @NamedQuery(name = "Posto.findAll", query = "SELECT p FROM Posto p")
     , @NamedQuery(name = "Posto.findByPostocod", query = "SELECT p FROM Posto p WHERE p.postocod = :postocod")
     , @NamedQuery(name = "Posto.findByPostonome", query = "SELECT p FROM Posto p WHERE p.postonome = :postonome")
-    , @NamedQuery(name = "Posto.findByPostoend", query = "SELECT p FROM Posto p WHERE p.postoend = :postoend")
-    , @NamedQuery(name = "Posto.findByPostobairro", query = "SELECT p FROM Posto p WHERE p.postobairro = :postobairro")
     , @NamedQuery(name = "Posto.findByPostoespecializacao", query = "SELECT p FROM Posto p WHERE p.postoespecializacao = :postoespecializacao")
     , @NamedQuery(name = "Posto.findByPostotelefone", query = "SELECT p FROM Posto p WHERE p.postotelefone = :postotelefone")
     , @NamedQuery(name = "Posto.findByPostofoto", query = "SELECT p FROM Posto p WHERE p.postofoto = :postofoto")
-    , @NamedQuery(name = "Posto.findByPostohorarioatend", query = "SELECT p FROM Posto p WHERE p.postohorarioatend = :postohorarioatend")})
+    , @NamedQuery(name = "Posto.findByPostohorarioatend", query = "SELECT p FROM Posto p WHERE p.postohorarioatend = :postohorarioatend")
+    , @NamedQuery(name = "Posto.findByPostocep", query = "SELECT p FROM Posto p WHERE p.postocep = :postocep")
+    , @NamedQuery(name = "Posto.findByPostobairro", query = "SELECT p FROM Posto p WHERE p.postobairro = :postobairro")
+    , @NamedQuery(name = "Posto.findByPostorua", query = "SELECT p FROM Posto p WHERE p.postorua = :postorua")
+    , @NamedQuery(name = "Posto.findByPostocidade", query = "SELECT p FROM Posto p WHERE p.postocidade = :postocidade")
+    , @NamedQuery(name = "Posto.findByPostoestado", query = "SELECT p FROM Posto p WHERE p.postoestado = :postoestado")
+    , @NamedQuery(name = "Posto.findByPostonumero", query = "SELECT p FROM Posto p WHERE p.postonumero = :postonumero")
+    , @NamedQuery(name = "Posto.findFilter", query = "SELECT p FROM Posto p"
+    + " WHERE p.postonome like :filtro OR p.postocidade like :filtro")
+    , @NamedQuery(name = "Posto.findFilter2", query = "SELECT p FROM Posto p"
+    + " WHERE p.postonome like :filtro1 AND p.postocidade like :filtro2")})
+
+
 public class Posto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,12 +60,6 @@ public class Posto implements Serializable {
     @Column(name = "postonome")
     private String postonome;
     @Basic(optional = false)
-    @Column(name = "postoend")
-    private String postoend;
-    @Basic(optional = false)
-    @Column(name = "postobairro")
-    private String postobairro;
-    @Basic(optional = false)
     @Column(name = "postoespecializacao")
     private String postoespecializacao;
     @Basic(optional = false)
@@ -69,12 +71,18 @@ public class Posto implements Serializable {
     @Basic(optional = false)
     @Column(name = "postohorarioatend")
     private String postohorarioatend;
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Estado id;
-    @JoinColumn(name = "municipibge", referencedColumnName = "municipibge")
-    @ManyToOne(optional = false)
-    private Municipibge municipibge;
+    @Column(name = "postocep")
+    private String postocep;
+    @Column(name = "postobairro")
+    private String postobairro;
+    @Column(name = "postorua")
+    private String postorua;
+    @Column(name = "postocidade")
+    private String postocidade;
+    @Column(name = "postoestado")
+    private String postoestado;
+    @Column(name = "postonumero")
+    private String postonumero;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "postocod")
     private List<Medicamentos> medicamentosList;
 
@@ -85,11 +93,9 @@ public class Posto implements Serializable {
         this.postocod = postocod;
     }
 
-    public Posto(Integer postocod, String postonome, String postoend, String postobairro, String postoespecializacao, String postotelefone, String postofoto, String postohorarioatend) {
+    public Posto(Integer postocod, String postonome, String postoespecializacao, String postotelefone, String postofoto, String postohorarioatend) {
         this.postocod = postocod;
         this.postonome = postonome;
-        this.postoend = postoend;
-        this.postobairro = postobairro;
         this.postoespecializacao = postoespecializacao;
         this.postotelefone = postotelefone;
         this.postofoto = postofoto;
@@ -110,22 +116,6 @@ public class Posto implements Serializable {
 
     public void setPostonome(String postonome) {
         this.postonome = postonome;
-    }
-
-    public String getPostoend() {
-        return postoend;
-    }
-
-    public void setPostoend(String postoend) {
-        this.postoend = postoend;
-    }
-
-    public String getPostobairro() {
-        return postobairro;
-    }
-
-    public void setPostobairro(String postobairro) {
-        this.postobairro = postobairro;
     }
 
     public String getPostoespecializacao() {
@@ -160,20 +150,52 @@ public class Posto implements Serializable {
         this.postohorarioatend = postohorarioatend;
     }
 
-    public Estado getId() {
-        return id;
+    public String getPostocep() {
+        return postocep;
     }
 
-    public void setId(Estado id) {
-        this.id = id;
+    public void setPostocep(String postocep) {
+        this.postocep = postocep;
     }
 
-    public Municipibge getMunicipibge() {
-        return municipibge;
+    public String getPostobairro() {
+        return postobairro;
     }
 
-    public void setMunicipibge(Municipibge municipibge) {
-        this.municipibge = municipibge;
+    public void setPostobairro(String postobairro) {
+        this.postobairro = postobairro;
+    }
+
+    public String getPostorua() {
+        return postorua;
+    }
+
+    public void setPostorua(String postorua) {
+        this.postorua = postorua;
+    }
+
+    public String getPostocidade() {
+        return postocidade;
+    }
+
+    public void setPostocidade(String postocidade) {
+        this.postocidade = postocidade;
+    }
+
+    public String getPostoestado() {
+        return postoestado;
+    }
+
+    public void setPostoestado(String postoestado) {
+        this.postoestado = postoestado;
+    }
+
+    public String getPostonumero() {
+        return postonumero;
+    }
+
+    public void setPostonumero(String postonumero) {
+        this.postonumero = postonumero;
     }
 
     @XmlTransient

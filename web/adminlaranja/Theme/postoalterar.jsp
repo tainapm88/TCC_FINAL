@@ -1,7 +1,3 @@
-<%@page import="modelo.Municipibge"%>
-<%@page import="Dao.MunicipibgeDAO"%>
-<%@page import="modelo.Estado"%>
-<%@page import="Dao.EstadoDAO"%>
 <%@page import="modelo.Medicamentos"%>
 <%@page import="util.StormData"%>
 <%@page import="java.util.ArrayList"%>
@@ -12,7 +8,7 @@
 
 <%@page import="java.util.List"%>
 <%@include file="cabecalho.jsp" %>
-<%@include file="lado.jsp" %>
+
 
 <%
     String msg = "";
@@ -21,37 +17,38 @@
     Posto obj = new Posto();
     PostoDAO pdao = new PostoDAO();
     
-    EstadoDAO edao = new EstadoDAO();
-    List<Estado> elistar = edao.listar();
-    Estado e = new Estado();
-    
-    MunicipibgeDAO mdao = new MunicipibgeDAO();
-    List<Municipibge> mlistar = mdao.listar();
-    Municipibge m = new Municipibge();
-
-    
      if(request.getMethod().equals("POST")){
 
         obj.setPostocod(Integer.parseInt(request.getParameter("txtPostoCodigo")));
         obj.setPostonome(request.getParameter("txtPostoNome"));
-        obj.setPostoend(request.getParameter("txtPostoEndereco"));
         obj.setPostobairro(request.getParameter("txtPostoBairro"));
-        e = edao.buscarPorChavePrimaria(Long.parseLong(request.getParameter("txtEstadoNome")));
-        m = mdao.buscarPorChavePrimaria(request.getParameter("txtCidadeNome"));
-        obj.setId(e);
-        obj.setMunicipibge(m);
+        
+        obj.setPostonumero(request.getParameter("numero"));
+        obj.setPostocep(request.getParameter("cep"));
+        obj.setPostorua(request.getParameter("rua"));
+        obj.setPostobairro(request.getParameter("bairro"));
+        obj.setPostocidade(request.getParameter("cidade"));
+        obj.setPostoestado(request.getParameter("uf"));
         
         obj.setPostohorarioatend(request.getParameter("txtPostoHorario"));
         obj.setPostoespecializacao(request.getParameter("txtPostoEspecializacao"));
         obj.setPostotelefone(request.getParameter("txtPostoTelefone"));
         obj.setPostofoto(request.getParameter("txtPostoFoto"));
+        
+        if(request.getParameter("txtPostoFoto")!=null)
+            {
+                obj.setPostofoto(request.getParameter("txtPostoFoto"));
+            }
+            else
+            {
+                obj.setPostofoto(request.getParameter("txtFotoVelha"));
+            }
 
           
         Boolean resultado = pdao.alterar(obj);
 
         if (resultado) {
-            msg = "Registro cadastrado com sucesso";
-            classe = "alert-success";
+            response.sendRedirect("postolistagem.jsp");
         } else {
             msg = "Não foi possível cadastrar";
             classe = "alert-danger";
@@ -76,34 +73,76 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Cadastro postos</title>
+        <script type="text/javascript" >
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="assets/js/bootstrap-datepicker/css/datepicker.css" />
-    <link rel="stylesheet" type="text/css" href="assets/js/bootstrap-daterangepicker/daterangepicker.css" />
-        
-    <!-- Custom styles for this template -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/style-responsive.css" rel="stylesheet">
+            function limpa_formulário_cep() {
+                //Limpa valores do formulário de cep.
+                document.getElementById('rua').value = ("");
+                document.getElementById('bairro').value = ("");
+                document.getElementById('cidade').value = ("");
+                document.getElementById('uf').value = ("");
+            }
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+            function meu_callback(conteudo) {
+                if (!("erro" in conteudo)) {
+                    //Atualiza os campos com os valores.
+                    document.getElementById('rua').value = (conteudo.logradouro);
+                    document.getElementById('bairro').value = (conteudo.bairro);
+                    document.getElementById('cidade').value = (conteudo.localidade);
+                    document.getElementById('uf').value = (conteudo.uf);
+                } //end if.
+                else {
+                    //CEP não Encontrado.
+                    limpa_formulário_cep();
+                    alert("CEP não encontrado.");
+                }
+            }
 
+            function pesquisacep(valor) {
+
+                //Nova variável "cep" somente com dígitos.
+                var cep = valor.replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if (validacep.test(cep)) {
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        document.getElementById('rua').value = "...";
+                        document.getElementById('bairro').value = "...";
+                        document.getElementById('cidade').value = "...";
+                        document.getElementById('uf').value = "...";
+
+                        //Cria um elemento javascript.
+                        var script = document.createElement('script');
+
+                        //Sincroniza com o callback.
+                        script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+                        //Insere script no documento e carrega o conteúdo.
+                        document.body.appendChild(script);
+
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    limpa_formulário_cep();
+                }
+            }
+            ;
+
+        </script>
   <body>
 
   <section id="container" >
@@ -136,76 +175,58 @@
                                   <input type="text" name="txtPostoNome" class="form-control" readonly value="<%=obj.getPostonome()%>">
                               </div>
                           </div>
+                          
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Endereço</label>
-                              <div class="col-sm-10">
-                                  <input type="text" name="txtPostoEndereco" class="form-control" required value="<%=obj.getPostoend()%>">
-                                  <span class="help-block">Ex.: Rua - nº</span>
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Bairro</label>
-                              <div class="col-sm-10">
-                                  <input type="text" name="txtPostoBairro" class="form-control" required value="<%=obj.getPostobairro()%>">
-                              </div>
-                          </div>
-                              
-                              
-                          <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">Estado</label>
-                            <div class="col-sm-10">
-                                
-                                <select id="inputEstado" name="txtEstadoNome" class="form-control" reandoly value="<%=obj.getId()%>">
-                                <option selected>
-                                    <%
-                           for (Estado iteme : elistar) {
-                               
-                         %>
-                         <option value = "<%=iteme.getId()%>">
-                             <%=iteme.getNome()%>
-                         </option>
-                         <%
-                             }
-                         %>
-                                </option>
-                            </select>
-                         </div>
-                                
-
-                         <div class="form-group">
-                             <label class="col-sm-2 col-sm-2 control-label">Cidade</label>
-                             <div class="col-sm-10">
-
-                                 <select id="inputEstado" name="txtCidadeNome"  class="form-control" reandoly value="<%=obj.getMunicipibge()%>">
-                                     <option selected>
-                                         <%
-                                             for (Municipibge itemm : mlistar) {
-
-                                         %>
-                                     <option value = "<%=itemm.getMunicipibge()%>">
-                                         <%=itemm.getMunicipnome()%>
-                                     </option>
-                                     <%
-                                         }
-                                     %>
-                                     </option>
-                                 </select>
-                             </div>
-
-                         
-                          <div class="form-group">
-                                <label class="col-sm-2 col-sm-2 control-label">Horário de atendimento</label>
-                                    <div class="col-sm-10">
-                                        <textarea  id="message" name="txtPostoHorario" class="form-control " cols="30" rows="8" reandoly value="<%=obj.getPostohorarioatend()%>">Segunda-feira:
-Terça-feira:
-Quarta-feira:
-Quinta-feira:
-Sexta-feira:
-Sábado:
-Domingo:
-                                        </textarea>
+                                        <label class="col-sm-2 col-sm-2 control-label">Cep:</label>
+                                        <div class="col-sm-10">
+                                            <input name="cep" type="text" id="cep" class="form-control" maxlength="9"
+                                                   onblur="pesquisacep(this.value);" required value="<%=obj.getPostocep()%>"/>
+                                        </div>
                                     </div>
-                          </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Rua:</label>
+                                        <div class="col-sm-10">
+                                            <input name="rua" type="text" id="rua" class="form-control" required value="<%=obj.getPostorua()%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Número</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="numero" class="form-control" required value="<%=obj.getPostonumero()%>">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Bairro:</label>
+                                        <div class="col-sm-10">
+                                            <input name="bairro" type="text" id="bairro" class="form-control" required value="<%=obj.getPostobairro()%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Cidade:</label>
+                                        <div class="col-sm-10">
+                                            <input name="cidade" type="text" id="cidade" class="form-control" required value="<%=obj.getPostocidade()%>">
+                                        </div>             
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-sm-2 control-label">Estado:</label>
+                                        <div class="col-sm-10">
+                                            <input name="uf" type="text" id="uf" class="form-control" required value="<%=obj.getPostoestado()%>">
+                                        </div>           
+                                    </div>
+
+                            <div class="form-group">
+                            <label class="col-sm-2 col-sm-2 control-label">Horário de Atendimento</label>
+                            <div class="col-sm-10">
+                               <TextArea class="form-control" name="txtPostoHorario" cols="30" rows="8" required><%=obj.getPostohorarioatend()%> </TextArea>
+                        </div>
+                        </div>
+                        
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
                               <div class="col-sm-10">
@@ -214,21 +235,21 @@ Domingo:
                               </div>
                           </div>
                           <div class="form-group">
-                                <label class="col-sm-2 col-sm-2 control-label">Especialização</label>
-                                    <div class="col-sm-10">
-                                        <textarea  name="txtPostoEspecializacao" id="message" class="form-control " cols="30" rows="8" required value="<%=obj.getPostoespecializacao()%>" >
-                                        </textarea>
-                                    </div>
-                          </div>
+                            <label class="col-sm-2 col-sm-2 control-label">Especialização</label>
+                            <div class="col-sm-10">
+                               <TextArea class="form-control" name="txtPostoEspecializacao" cols="30" rows="8" required ><%=obj.getPostoespecializacao()%> </TextArea>
+                        </div>
+                        </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Foto</label>
-                              <div class="col-sm-10">
+                            <label class="col-sm-2 col-sm-2 control-label">Foto</label>
+                            <div class="col-sm-10">
                                   <div class="form-group">
-                                      <input class="form-control" type="file"  name="txtPostoFoto"  required value="<%=obj.getPostofoto()%>" />
+                                    <input class="form-control" type="file" name="txtPostoFoto" id="arquivo1"  accept="image/*" />
+                                    <input type="hidden" name="txtFotoVelha" value="<%=obj.getPostofoto()%>" />
+                                    <td><img src="../../arquivos/<%=obj.getPostofoto()%>" id="img1" width="100" height="80"/></td>
                                   </div>
 
                               </div>
-                      
                           </div>
           		</div><!-- col-lg-12-->   
                          
@@ -255,38 +276,6 @@ Domingo:
       <!--footer end-->
   </section>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="assets/js/jquery.scrollTo.min.js"></script>
-    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-
-
-    <!--common script for all pages-->
-    <script src="assets/js/common-scripts.js"></script>
-
-    <!--script for this page-->
-    <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
-
-	<!--custom switch-->
-	<script src="assets/js/bootstrap-switch.js"></script>
-	
-	<!--custom tagsinput-->
-	<script src="assets/js/jquery.tagsinput.js"></script>
-	
-	<!--custom checkbox & radio-->
-	
-	<script type="text/javascript" src="assets/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript" src="assets/js/bootstrap-daterangepicker/date.js"></script>
-	<script type="text/javascript" src="assets/js/bootstrap-daterangepicker/daterangepicker.js"></script>
-	
-	<script type="text/javascript" src="assets/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
-	
-	
-	<script src="assets/js/form-component.js"></script>    
-    
-    
   <script>
       //custom select box
 

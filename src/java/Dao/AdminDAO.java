@@ -20,7 +20,7 @@ public class AdminDAO extends GenericDAO<Admin, Integer>{
     public Admin logar(String email, String senha)
     {
         Admin retorno;
-        Query q = em.createNamedQuery("Admin.login").setParameter("email", email).setParameter("senha", senha);
+        Query q = em.createNamedQuery("Admin.login").setParameter("adminemail", email).setParameter("adminsenha", senha);
         try{
             retorno = (Admin)q.getSingleResult();
         } catch (Exception e){

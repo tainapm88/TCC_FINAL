@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -36,11 +34,17 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Admin.findByAdminsobrenome", query = "SELECT a FROM Admin a WHERE a.adminsobrenome = :adminsobrenome")
     , @NamedQuery(name = "Admin.findByAdmincpf", query = "SELECT a FROM Admin a WHERE a.admincpf = :admincpf")
     , @NamedQuery(name = "Admin.findByAdmindatanasc", query = "SELECT a FROM Admin a WHERE a.admindatanasc = :admindatanasc")
-    , @NamedQuery(name = "Admin.findByAdminend", query = "SELECT a FROM Admin a WHERE a.adminend = :adminend")
     , @NamedQuery(name = "Admin.findByAdmintelefone", query = "SELECT a FROM Admin a WHERE a.admintelefone = :admintelefone")
     , @NamedQuery(name = "Admin.findByAdminsexo", query = "SELECT a FROM Admin a WHERE a.adminsexo = :adminsexo")
     , @NamedQuery(name = "Admin.findByAdminemail", query = "SELECT a FROM Admin a WHERE a.adminemail = :adminemail")
-    , @NamedQuery(name = "Admin.findByAdminsenha", query = "SELECT a FROM Admin a WHERE a.adminsenha = :adminsenha")})
+    , @NamedQuery(name = "Admin.findByAdminsenha", query = "SELECT a FROM Admin a WHERE a.adminsenha = :adminsenha")
+    , @NamedQuery(name = "Admin.findByAdmincep", query = "SELECT a FROM Admin a WHERE a.admincep = :admincep")
+    , @NamedQuery(name = "Admin.findByAdminrua", query = "SELECT a FROM Admin a WHERE a.adminrua = :adminrua")
+    , @NamedQuery(name = "Admin.findByAdminbairro", query = "SELECT a FROM Admin a WHERE a.adminbairro = :adminbairro")
+    , @NamedQuery(name = "Admin.findByAdmincidade", query = "SELECT a FROM Admin a WHERE a.admincidade = :admincidade")
+    , @NamedQuery(name = "Admin.findByAdminestado", query = "SELECT a FROM Admin a WHERE a.adminestado = :adminestado")
+    , @NamedQuery(name = "Admin.findByAdminnumero", query = "SELECT a FROM Admin a WHERE a.adminnumero = :adminnumero")
+    , @NamedQuery(name = "Admin.login", query = "SELECT a FROM Admin a WHERE a.adminsenha = :adminsenha and a.adminemail = :adminemail ")})
 public class Admin implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -63,9 +67,6 @@ public class Admin implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date admindatanasc;
     @Basic(optional = false)
-    @Column(name = "adminend")
-    private String adminend;
-    @Basic(optional = false)
     @Column(name = "admintelefone")
     private String admintelefone;
     @Basic(optional = false)
@@ -77,12 +78,18 @@ public class Admin implements Serializable {
     @Basic(optional = false)
     @Column(name = "adminsenha")
     private String adminsenha;
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Estado id;
-    @JoinColumn(name = "municipibge", referencedColumnName = "municipibge")
-    @ManyToOne(optional = false)
-    private Municipibge municipibge;
+    @Column(name = "admincep")
+    private String admincep;
+    @Column(name = "adminrua")
+    private String adminrua;
+    @Column(name = "adminbairro")
+    private String adminbairro;
+    @Column(name = "admincidade")
+    private String admincidade;
+    @Column(name = "adminestado")
+    private String adminestado;
+    @Column(name = "adminnumero")
+    private String adminnumero;
 
     public Admin() {
     }
@@ -91,13 +98,12 @@ public class Admin implements Serializable {
         this.admincod = admincod;
     }
 
-    public Admin(Integer admincod, String adminnome, String adminsobrenome, String admincpf, Date admindatanasc, String adminend, String admintelefone, String adminsexo, String adminemail, String adminsenha) {
+    public Admin(Integer admincod, String adminnome, String adminsobrenome, String admincpf, Date admindatanasc, String admintelefone, String adminsexo, String adminemail, String adminsenha) {
         this.admincod = admincod;
         this.adminnome = adminnome;
         this.adminsobrenome = adminsobrenome;
         this.admincpf = admincpf;
         this.admindatanasc = admindatanasc;
-        this.adminend = adminend;
         this.admintelefone = admintelefone;
         this.adminsexo = adminsexo;
         this.adminemail = adminemail;
@@ -144,14 +150,6 @@ public class Admin implements Serializable {
         this.admindatanasc = admindatanasc;
     }
 
-    public String getAdminend() {
-        return adminend;
-    }
-
-    public void setAdminend(String adminend) {
-        this.adminend = adminend;
-    }
-
     public String getAdmintelefone() {
         return admintelefone;
     }
@@ -184,20 +182,52 @@ public class Admin implements Serializable {
         this.adminsenha = adminsenha;
     }
 
-    public Estado getId() {
-        return id;
+    public String getAdmincep() {
+        return admincep;
     }
 
-    public void setId(Estado id) {
-        this.id = id;
+    public void setAdmincep(String admincep) {
+        this.admincep = admincep;
     }
 
-    public Municipibge getMunicipibge() {
-        return municipibge;
+    public String getAdminrua() {
+        return adminrua;
     }
 
-    public void setMunicipibge(Municipibge municipibge) {
-        this.municipibge = municipibge;
+    public void setAdminrua(String adminrua) {
+        this.adminrua = adminrua;
+    }
+
+    public String getAdminbairro() {
+        return adminbairro;
+    }
+
+    public void setAdminbairro(String adminbairro) {
+        this.adminbairro = adminbairro;
+    }
+
+    public String getAdmincidade() {
+        return admincidade;
+    }
+
+    public void setAdmincidade(String admincidade) {
+        this.admincidade = admincidade;
+    }
+
+    public String getAdminestado() {
+        return adminestado;
+    }
+
+    public void setAdminestado(String adminestado) {
+        this.adminestado = adminestado;
+    }
+
+    public String getAdminnumero() {
+        return adminnumero;
+    }
+
+    public void setAdminnumero(String adminnumero) {
+        this.adminnumero = adminnumero;
     }
 
     @Override
@@ -222,7 +252,7 @@ public class Admin implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Admin[ admincod=" + admincod + " ]";
+        return adminnome;
     }
     
 }
