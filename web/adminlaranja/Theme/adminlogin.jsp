@@ -1,14 +1,20 @@
+<%@page import="util.Criptografia"%>
 <%@page import="modelo.Admin"%>
 <%@page import="Dao.AdminDAO"%>
 
 <%
+    if (request.getParameter("acao") != null){
+        session.setAttribute("admin", "");
+    }
     //se os dois campos forem informados, é login 
     if(request.getParameter("txtAdminEmail")!=null && 
             request.getParameter("txtAdminSenha")!= null)
     {
         AdminDAO dao = new AdminDAO();
         Admin a = dao.logar(request.getParameter("txtAdminEmail"),
-                request.getParameter("txtAdminSenha"));
+                (Criptografia.convertPasswordToMD5(request.getParameter("txtAdminSenha"))));{
+        session.setAttribute("admin", request.getParameter("txtAdminEmail"));
+    }
         
         if(a !=null)
         {

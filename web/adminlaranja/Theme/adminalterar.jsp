@@ -1,4 +1,5 @@
 <%@page import="util.StormData"%>
+<%@page import="util.Criptografia"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Date"%>
 
@@ -8,26 +9,24 @@
 <%@page import="java.util.List"%>
 <%@include file="cabecalho.jsp" %>
 
-<%
-    String msg = "";
+<%  String msg = "";
     String classe = "";
-    
+
     Admin obj = new Admin();
     AdminDAO dao = new AdminDAO();
-    
-     if(request.getMethod().equals("POST")){
 
-    if (request.getParameter("txtAdminNome") != null) {
+    if (request.getMethod().equals("POST")) {
         obj.setAdmincod(Integer.parseInt(request.getParameter("txtAdminCodigo")));
         obj.setAdminnome(request.getParameter("txtAdminNome"));
         obj.setAdminsobrenome(request.getParameter("txtAdminSobrenome"));
         obj.setAdmincpf(request.getParameter("txtAdminCpf"));
         obj.setAdmindatanasc(StormData.formata(request.getParameter("txtAdminDataNasc")));
+        //obj.setAdmindatanasc(StormData.formata(request.getParameter("txtAdminDataNasc"), "yyyy-MM-dd"));
         obj.setAdminnumero(request.getParameter("numero"));
         obj.setAdmintelefone(request.getParameter("txtAdminTelefone"));
         obj.setAdminsexo(request.getParameter("txtAdminSexo"));
         obj.setAdminemail(request.getParameter("txtAdminEmail"));
-        obj.setAdminsenha(request.getParameter("txtAdminSenha"));
+        obj.setAdminsenha(Criptografia.convertPasswordToMD5(request.getParameter("txtAdminSenha")));
 
         obj.setAdmincep(request.getParameter("cep"));
         obj.setAdminrua(request.getParameter("rua"));
@@ -35,10 +34,7 @@
         obj.setAdmincidade(request.getParameter("cidade"));
         obj.setAdminestado(request.getParameter("uf"));
 
-        
-
         Boolean resultado = dao.alterar(obj);
-        
 
         if (resultado) {
             msg = "Registro alterado com sucesso";
@@ -47,8 +43,8 @@
             msg = "Não foi possível cadastrar";
             classe = "alert-danger";
         }
-        
-         } else {
+
+    } else {
         //e GET
         if (request.getParameter("codigo") == null) {
             response.sendRedirect("index.jsp");
@@ -57,22 +53,21 @@
 
         dao = new AdminDAO();
         obj = dao.buscarPorChavePrimaria(Integer.parseInt(request.getParameter("codigo")));
-
         if (obj == null) {
             response.sendRedirect("index.jsp");
             return;
         }
     }
-     }
-            
+
+
 %>
 
 
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
- 
+    <head>
+
         <script type="text/javascript" >
 
             function limpa_formulário_cep() {
@@ -142,180 +137,181 @@
             ;
 
         </script>
-  </head>
+    </head>
 
-  <body>
+    <body>
 
-  <section id="container" >
-      <!--CABEÇALHO-->
-        
-      <section id="main-content">
-          <section class="wrapper">
-          	<h3><i class="fa fa-angle-right"></i> Alterar - Administrador</h3>
-                <div class="alert <%=classe%>">
-                <%=msg%>
-            </div>
-          	
-            <form action="../../UploadWS" method="post" enctype="multipart/form-data">
-          	<!-- BASIC FORM ELELEMNTS -->
-          	<div class="row mt">
-          		<div class="col-lg-12">
-                  <div class="form-panel">
-                      
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Código de identificação</label>
-                              <div class="col-sm-10">
-                                  <input class="form-control" type="text" name="txtAdminCodigo" readonly value="<%=obj.getAdmincod()%>">
-                              </div>
-                          </div>
-                          
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Nome</label>
-                              <div class="col-sm-10">
-                                  <input class="form-control" type="text" name="txtAdminNome" readonly value="<%=obj.getAdminnome()%>">
-                              </div>
-                          </div>
-                          
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Sobrenome</label>
-                              <div class="col-sm-10">
-                                  <input class="form-control" type="text" name="txtAdminSobrenome" readonly value="<%=obj.getAdminsobrenome()%>">
-                              </div>
-                          </div>
+        <section id="container" >
+            <!--CABEÇALHO-->
 
-                          
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">CPF</label>
-                              <div class="col-sm-10">
-                                  <input class="form-control" type="text" name="txtAdminCpf" readonly value="<%=obj.getAdmincpf()%>">
-                              </div>
-                          </div>
-                              
-                          <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Cep:</label>
-                                        <div class="col-sm-10">
-                                            <input name="cep" type="text" id="cep" value="" class="form-control" maxlength="9"
+            <section id="main-content">
+                <section class="wrapper">
+                    <h3></br>Alterar - Administrador</h3>
+                    <div class="alert <%=classe%>">
+                        <%=msg%>
+                    </div>
+
+                    <form action="../../UploadWS" method="post" enctype="multipart/form-data">
+                        <!-- BASIC FORM ELELEMNTS -->
+                        <div class="row mt">
+                            <div class="col-lg-12">
+                                
+                                    <div class="form-group">
+                                        <label class="col-sm-1">Código de identificação</label>
+                                        <div class="col-sm-11">
+                                            <input class="form-control" type="text" name="txtAdminCodigo" readonly value="<%=obj.getAdmincod()%>">
+                                            </br>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-1">Nome</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="text" name="txtAdminNome" required value="<%=obj.getAdminnome()%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-1">Sobrenome</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" type="text" name="txtAdminSobrenome" readonly value="<%=obj.getAdminsobrenome()%>">
+                                            </br>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="form-group">
+                                        <label class="col-sm-1">CPF</label>
+                                        <div class="col-sm-5">
+                                            <input class="form-control" type="text" name="txtAdminCpf" readonly value="<%=obj.getAdmincpf()%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-1">Data de Nascimento</label>
+                                        <div class="col-sm-5">
+                                            <input type="text"  name="txtAdminDataNasc"  class="form-control" readonly value="<%=StormData.formata(obj.getAdmindatanasc())%>">
+                                            </br>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-1">Cep:</label>
+                                        <div class="col-sm-5">
+                                            <input name="cep" type="text" id="cep" class="form-control" maxlength="9"
                                                    onblur="pesquisacep(this.value);" required value="<%=obj.getAdmincep()%>"/>
                                         </div>
                                     </div>
+                                    
+                                   <div class="form-group">
+                                        <label class="col-sm-1">Bairro:</label>
+                                        <div class="col-sm-5">
+                                            <input name="bairro" type="text" id="bairro" class="form-control" required value="<%=obj.getAdminbairro()%>">
+                                            </br>
+                                        </div>
+                                    </div> 
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Rua:</label>
-                                        <div class="col-sm-10">
-                                            <input name="rua" type="text" id="rua" class="form-control" required="<%=obj.getAdminrua()%>" />
+                                        <label class="col-sm-1">Rua:</label>
+                                        <div class="col-sm-8">
+                                            <input name="rua" type="text" id="rua" class="form-control" required value="<%=obj.getAdminrua()%>" />
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Número</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="numero" class="form-control">
-
+                                        <label class="col-sm-1">Número</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" name="numero" class="form-control" required value="<%=obj.getAdminnumero()%>">
+                                            </br>
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Bairro:</label>
-                                        <div class="col-sm-10">
-                                            <input name="bairro" type="text" id="bairro" class="form-control">
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Cidade:</label>
-                                        <div class="col-sm-10">
-                                            <input name="cidade" type="text" id="cidade" class="form-control">
+                                        <label class="col-sm-1">Cidade:</label>
+                                        <div class="col-sm-5">
+                                            <input name="cidade" type="text" id="cidade" class="form-control" required value="<%=obj.getAdmincidade()%>">
                                         </div>             
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Estado:</label>
-                                        <div class="col-sm-10">
-                                            <input name="uf" type="text" id="uf" class="form-control">
+                                        <label class="col-sm-1">Estado:</label>
+                                        <div class="col-sm-5">
+                                            <input name="uf" type="text" id="uf" class="form-control" required value="<%=obj.getAdminestado()%>">
+                                            </br>
                                         </div>           
                                     </div>
 
-                         
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" placeholder="Ex.:(00)123456789" required value="<%=obj.getAdmintelefone()%>">
-                              </div>
-                          </div>
 
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Email</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" placeholder="fulano@gmail.com" required value="<%=obj.getAdminemail()%>">
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Nova Senha</label>
-                              <div class="col-sm-10">
-                                  <input type="text" class="form-control" placeholder="12345678" required value="<%=obj.getAdminsenha()%>">
-                              </div>
-                          </div>
-                  </div>
-                 <div class="showback">
-                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Alterar">
-                    </div><!--/showback -->
-                      </form>
-		</section><! --/wrapper -->
-      </section><!-- /MAIN CONTENT -->
+                                    <div class="form-group">
+                                        <label class="col-sm-1">Telefone</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="txtAdminTelefone" class="form-control" placeholder="Ex.:(00)123456789" required value="<%=obj.getAdmintelefone()%>">
+                                        </div>
+                                    </div>
 
-      <!--main content end-->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              2019 - Tainá Pacheco Morais
-              <a href="form_component.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
-      <!--footer end-->
-  </section>
+                                    <div class="form-group">
+                                        <label class="col-sm-1">Sexo</label>
+                                        <div class="col-sm-5">
+                                            <select name="txtAdminSexo" class="form-control" reandoly value="<%=obj.getAdminsexo()%>" />
+                                            <option value="M">Masculino</option>
+                                            <option value="F">Feminino</option>
+                                            </select>
+                                            </br>
+                                        </div>  
+                                    </div>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="assets/js/jquery.scrollTo.min.js"></script>
-    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+                                    <div class="form-group">
+                                        <label class="col-sm-1">Email</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" name="txtAdminEmail" class="form-control" placeholder="fulano@gmail.com" required value="<%=obj.getAdminemail()%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-1">Nova Senha</label>
+                                        <div class="col-sm-4">
+                                            <input type="password" name="txtAdminSenha" class="form-control" placeholder="12345678" required value="<%=obj.getAdminsenha()%>">
+                                            </br>
+                                        </div>
+                                    </div>
+                                
+                        </div><!-- col-lg-12-->   
 
+                    </div><!-- /row -->
+                                
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        <div>
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Alterar">
+                                </div><!--/showback -->
+                                </form>
+                                </section><! --/wrapper -->
+                                </section><!-- /MAIN CONTENT -->
 
-    <!--common script for all pages-->
-    <script src="assets/js/common-scripts.js"></script>
+                                <!--main content end-->
+                                <!--footer start-->
+                                <footer class="site-footer">
+                                    <div class="text-center">
+                                        2019 - Tainá Pacheco Morais
+                                        <a href="form_component.html#" class="go-top">
+                                            <i class="fa fa-angle-up"></i>
+                                        </a>
+                                    </div>
+                                </footer>
+                                <!--footer end-->
+                                </section>
 
-    <!--script for this page-->
-    <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
+                                <script>
+                                    //custom select box
 
-	<!--custom switch-->
-	<script src="assets/js/bootstrap-switch.js"></script>
-	
-	<!--custom tagsinput-->
-	<script src="assets/js/jquery.tagsinput.js"></script>
-	
-	<!--custom checkbox & radio-->
-	
-	<script type="text/javascript" src="assets/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript" src="assets/js/bootstrap-daterangepicker/date.js"></script>
-	<script type="text/javascript" src="assets/js/bootstrap-daterangepicker/daterangepicker.js"></script>
-	
-	<script type="text/javascript" src="assets/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
-	
-	
-	<script src="assets/js/form-component.js"></script>    
-    
-    
-  <script>
-      //custom select box
+                                    $(function () {
+                                        $('select.styled').customSelect();
+                                    });
 
-      $(function(){
-          $('select.styled').customSelect();
-      });
+                                </script>
 
-  </script>
-
-  </body>
-</html>
+                                </body>
+                                </html>

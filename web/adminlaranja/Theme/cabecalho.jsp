@@ -1,3 +1,10 @@
+<% 
+    if(session.getAttribute("admin").equals("")){
+        response.sendRedirect("..adminlogin.jsp");
+        return;
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,30 +39,13 @@
 
   <section id="container" >
             <header class="header black-bg">
-
-                        <!--logo start-->
-                        <a href="index.jsp" class="logo"><b>FACILITASUS</b></a>
-                        <!--logo end-->
-
-                        <UL class="nav navbar navbar-right navbar-user">
-                            <li class="divider-vertical">
-                                
-                            
-                        <li class="dropdown user">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%=session.getAttribute("admin")%>
-                                <b class="caret"></b> </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="adminlogin.jsp?acao=Sair">
-                                            <i class="fa fa-power-off">SAIR</i>
-                                        </a>
-                                        
-                                    </li>
-                                </ul>
-                        </li></li></UL>
-
-
-                    </header>
+                <a href="index.jsp" class="logo"><b>FACILITASUS</b></a>    
+                    <div class="top-menu">
+                	<ul class="nav pull-right top-menu">
+                            <li><a class="logout" href="adminlogin.jsp?acao=sair">SAIR</a></li>
+                        </ul>
+                    </div>
+            </header>
       <!--header end-->
       
       <!-- **********************************************************************************************************************************************************
@@ -100,11 +90,16 @@
                           <li><a  href="postolistagem.jsp">Lista</a></li>
                       </ul>
                   </li>
-                  <li class="mt">
-                      <a href="adminalterar.jsp">
+
+                  
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
                           <i class="fa fa-user"></i>
                           <span>Perfil</span>
                       </a>
+                      <ul class="sub">
+                          <li><a  href="adminlistagem.jsp">Lista</a></li>
+                      </ul>
                   </li>
               </ul>
               <!-- sidebar menu end-->

@@ -31,44 +31,15 @@
   <body>
 
   <section id="container" >
-            <header class="header black-bg">
+        <header class="header black-bg">
+            <a href="index.jsp" class="logo"><b>FACILITASUS</b></a>
+            <div class="top-menu">
+                	<ul class="nav pull-right top-menu">
+                            <li><a class="logout" href="adminlogin.jsp">SAIR</a></li>
+                        </ul>
+                    </div>
 
-                        <!--logo start-->
-                        <a href="index.jsp" class="logo"><b>FACILITASUS</b></a>
-                        <!--logo end-->
-                        
-                        <UL class="nav navbar navbar-right navbar-user">
-                            <li class="divider-vertical">
-                                
-                            
-                        <li class="dropdown user">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%=session.getAttribute("admin")%>
-                                <b class="caret"></b> </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="../adminlogin.jsp?acao=Sair">
-                                            <i class="fa fa-power-off">SAIR</i>
-                                        </a>
-                                        
-                                    </li>
-                                </ul>
-                        </li></li></UL>
-                        <!-- <div class="top-menu">
-                            <ul class="nav pull-right top-menu">
-                                <a href="#" ><i class="fa fa-user"></i> <%=session.getAttribute("admin")%> </a>
-                                <li><a class="logout" href="adminlogin.jsp">SAIR</a></li>
-                            </ul>
-                        </div>
--->
-
-                    </header>
-      <!--header end-->
-      
-      <!-- **********************************************************************************************************************************************************
-      MAIN SIDEBAR MENU
-      *********************************************************************************************************************************************************** -->
-      <!--sidebar start-->
-      
+        </header>
   </section>
 
     <script src="assets/js/fancybox/jquery.fancybox.js"></script>    

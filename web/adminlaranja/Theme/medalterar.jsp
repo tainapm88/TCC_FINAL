@@ -83,7 +83,7 @@
         
       <section id="main-content">
           <section class="wrapper">
-          	<h3><i class="fa fa-angle-right"></i> Alterar - Medicamentos</h3>
+              <h3></br> Alterar - Medicamentos</h3>
                 
                 <div class="alert <%=classe%>">
                 <%=msg%>
@@ -92,32 +92,32 @@
           	
           	<!-- BASIC FORM ELELEMNTS -->
           	<div class="row mt">
-          		<div class="col-lg-12">
-                  <div class="form-panel">
-                  	  
-                      
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Código</label>
-                              <div class="col-sm-10">
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                          
+                              <label class="col-sm-1">Código</label>
+                              <div class="col-sm-11">
                                   <input type="text"  name="txtMedCodigo" class="form-control" readonly value="<%=obj.getMedcod()%>">
+                                  </br>
                               </div>
-                          </div>
+                          
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Nome</label>
-                              <div class="col-sm-10">
+                              <label class="col-sm-1">Nome</label>
+                              <div class="col-sm-7">
                                   <input type="text" name="txtMedNome" class="form-control" readonly value="<%=obj.getMednome()%>">
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Quantidade</label>
-                              <div class="col-sm-10">
+                              <label class="col-sm-1">Quantidade</label>
+                              <div class="col-sm-3">
                                   <input type="text" name="txtMedQuantidade" class="form-control" required value="<%=obj.getMedqtdade()%>">
+                                  </br>
                               </div>
                           </div>
                                      
                              <div class="form-group">
-                             <label class="col-sm-2 col-sm-2 control-label">Posto</label>
-                             <div class="col-sm-10">
+                             <label class="col-sm-1">Posto</label>
+                             <div class="col-sm-11">
 
                                  <select type="text" name="txtPostoNome"  class="form-control" required placeholder="Selecione">
                                    
@@ -133,18 +133,20 @@
                                      %>
                                     
                                  </select>
+                                     </br>
                              </div>
                               
                         <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">Bula</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-1">Bula</label>
+                            <div class="col-sm-11">
                                <TextArea class="form-control" name="txtMedBula" cols="30" rows="8" readonly><%=obj.getMedbula()%> </TextArea>
+                        </br>
                         </div>
                         </div>
    
                           <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">Foto</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-1">Foto</label>
+                            <div class="col-sm-11">
                                   <div class="form-group">
                                     <input class="form-control" type="file" name="txtMedFoto" id="arquivo1"  accept="image/*" />
                                     <input type="hidden" name="txtFotoVelha" value="<%=obj.getMedfoto()%>" />
@@ -156,10 +158,11 @@
                       
                     </div>        
           		</div><!-- col-lg-12-->   
-                         
-          	</div><!-- /row -->
+                        </div> 
+          	</div>
+        
                 
-                <div class="showback">
+                    <div>
                         <input type="submit" class="btn btn-primary btn-lg btn-block" value="Alterar">
                     </div><!--/showback -->
                       </form>

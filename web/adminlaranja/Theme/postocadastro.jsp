@@ -133,7 +133,7 @@
         
       <section id="main-content">
           <section class="wrapper">
-          	<h3><i class="fa fa-angle-right"></i> Cadastro Posto</h3>
+              <h3></br> Cadastro Posto</h3>
                 
                 <div class="alert <%=classe%>">
                 <%=msg%>
@@ -143,69 +143,82 @@
           	<!-- BASIC FORM ELELEMNTS -->
           	<div class="row mt">
           		<div class="col-lg-12">
-                  <div class="form-panel">
-                  	  
-                      
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Código</label>
-                              <div class="col-sm-10">
+                              <label class="col-sm-1">Código</label>
+                              <div class="col-sm-11">
                                   <input type="text"  name="txtPostoCodigo" class="form-control">
                               </div>
+                            </br>
+                            </br>
                           </div>
+
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Nome</label>
-                              <div class="col-sm-10">
+                              <label class="col-sm-1">Nome</label>
+                              <div class="col-sm-11">
                                   <input type="text" name="txtPostoNome" class="form-control">
                               </div>
+                              </br>
+                            </br>
                           </div>
                          
                          <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Cep:</label>
-                                        <div class="col-sm-10">
+                                        <label class="col-sm-1">Cep:</label>
+                                        <div class="col-sm-3">
                                             <input name="cep" type="text" id="cep" value="" class="form-control" maxlength="9"
                                                    onblur="pesquisacep(this.value);" />
                                         </div>
                                     </div>
-
+                            
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Rua:</label>
-                                        <div class="col-sm-10">
+                                        <label class="col-sm-1">Bairro:</label>
+                                        <div class="col-sm-7">
+                                            <input name="bairro" type="text" id="bairro" class="form-control">
+                                        </div>
+                                        </br></br>
+                                    </div>
+                            
+                                    <div class="form-group">
+                                        <label class="col-sm-1">Rua:</label>
+                                        <div class="col-sm-8">
                                             <input name="rua" type="text" id="rua" class="form-control">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Número</label>
-                                        <div class="col-sm-10">
+                                        <label class="col-sm-1">Número</label>
+                                        <div class="col-sm-2">
                                             <input type="text" name="numero" class="form-control">
-
                                         </div>
+                                        </br></br>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Bairro:</label>
-                                        <div class="col-sm-10">
-                                            <input name="bairro" type="text" id="bairro" class="form-control">
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Cidade:</label>
-                                        <div class="col-sm-10">
+                                        <label class="col-sm-1">Cidade:</label>
+                                        <div class="col-sm-5">
                                             <input name="cidade" type="text" id="cidade" class="form-control">
                                         </div>             
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Estado:</label>
-                                        <div class="col-sm-10">
+                                        <label class="col-sm-1">Estado:</label>
+                                        <div class="col-sm-5">
                                             <input name="uf" type="text" id="uf" class="form-control">
-                                        </div>           
+                                        </div> 
+                                        </br></br>
                                     </div>
+                            <div class="form-group">
+                              <label class="col-sm-1">Telefone</label>
+                              <div class="col-sm-11">
+                                  <input type="text" name="txtPostoTelefone" class="form-control">
+                                  <span class="help-block">Ex.: (00)123456789</span>
+                              </div>
+                          </div>
                          
                           <div class="form-group">
-                                <label class="col-sm-2 col-sm-2 control-label">Horário de atendimento</label>
-                                    <div class="col-sm-10">
+                                <label class="col-sm-1">Horário de atendimento</label>
+                                    <div class="col-sm-11">
                                         <textarea  id="message" name="txtPostoHorario" class="form-control " cols="30" rows="8">Segunda-feira:
 Terça-feira:
 Quarta-feira:
@@ -214,25 +227,22 @@ Sexta-feira:
 Sábado:
 Domingo:
                                         </textarea>
+                                       </br>
                                     </div>
+                                </br></br>
                           </div>
+                          
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
-                              <div class="col-sm-10">
-                                  <input type="text" name="txtPostoTelefone" class="form-control">
-                                  <span class="help-block">Ex.: (00)123456789</span>
-                              </div>
-                          </div>
-                          <div class="form-group">
-                                <label class="col-sm-2 col-sm-2 control-label">Especialização</label>
-                                    <div class="col-sm-10">
+                                <label class="col-sm-1">Especialização</label>
+                                    <div class="col-sm-11">
                                         <textarea  name="txtPostoEspecializacao" id="message" class="form-control " cols="30" rows="8">
                                         </textarea>
+                                        </br>
                                     </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Foto</label>
-                              <div class="col-sm-10">
+                              <label class="col-sm-1 ">Foto</label>
+                              <div class="col-sm-11">
                                   <div class="form-group">
                                     <input class="form-control" type="file"  name="txtPostoFoto"  required />
                                   </div>
@@ -244,7 +254,7 @@ Domingo:
                          
           	</div><!-- /row -->
                 
-                <div class="showback">
+                    <div>
                         <input type="submit" class="btn btn-primary btn-lg btn-block" value="Cadastrar">
                     </div><!--/showback -->
                       </form>

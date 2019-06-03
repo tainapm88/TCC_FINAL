@@ -1,14 +1,14 @@
 <%@page import="Dao.AdminDAO"%>
 <%@page import="modelo.Admin"%>
 <%@page import="util.StormData"%>
+<%@page import="util.Criptografia"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 <%@include file="cabecalho.jsp" %>
 
 
-<%
-    String msg = "";
+<%    String msg = "";
     String classe = "";
 
     Admin obj = new Admin();
@@ -26,7 +26,7 @@
             obj.setAdmintelefone(request.getParameter("txtAdminTelefone"));
             obj.setAdminsexo(request.getParameter("txtAdminSexo"));
             obj.setAdminemail(request.getParameter("txtAdminEmail"));
-            obj.setAdminsenha(request.getParameter("txtAdminSenha"));
+            obj.setAdminsenha(Criptografia.convertPasswordToMD5(request.getParameter("txtAdminSenha")));
 
             obj.setAdmincep(request.getParameter("cep"));
             obj.setAdminrua(request.getParameter("rua"));
@@ -57,243 +57,235 @@
 
 <!DOCTYPE html>
 
-        <script type="text/javascript" >
+<script type="text/javascript" >
 
-            function limpa_formulário_cep() {
-                //Limpa valores do formulário de cep.
-                document.getElementById('rua').value = ("");
-                document.getElementById('bairro').value = ("");
-                document.getElementById('cidade').value = ("");
-                document.getElementById('uf').value = ("");
+    function limpa_formulário_cep() {
+        //Limpa valores do formulário de cep.
+        document.getElementById('rua').value = ("");
+        document.getElementById('bairro').value = ("");
+        document.getElementById('cidade').value = ("");
+        document.getElementById('uf').value = ("");
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('rua').value = (conteudo.logradouro);
+            document.getElementById('bairro').value = (conteudo.bairro);
+            document.getElementById('cidade').value = (conteudo.localidade);
+            document.getElementById('uf').value = (conteudo.uf);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if (validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('rua').value = "...";
+                document.getElementById('bairro').value = "...";
+                document.getElementById('cidade').value = "...";
+                document.getElementById('uf').value = "...";
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
             }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    }
+    ;
 
-            function meu_callback(conteudo) {
-                if (!("erro" in conteudo)) {
-                    //Atualiza os campos com os valores.
-                    document.getElementById('rua').value = (conteudo.logradouro);
-                    document.getElementById('bairro').value = (conteudo.bairro);
-                    document.getElementById('cidade').value = (conteudo.localidade);
-                    document.getElementById('uf').value = (conteudo.uf);
-                } //end if.
-                else {
-                    //CEP não Encontrado.
-                    limpa_formulário_cep();
-                    alert("CEP não encontrado.");
-                }
-            }
+</script>
+</head>
 
-            function pesquisacep(valor) {
+<body>
 
-                //Nova variável "cep" somente com dígitos.
-                var cep = valor.replace(/\D/g, '');
+    <section id="container" >
+        <!--CABEÇALHO-->
 
-                //Verifica se campo cep possui valor informado.
-                if (cep != "") {
+        <section id="main-content">
+            <section class="wrapper">
+                <h3></br>Cadastro Administrador</h3>
 
-                    //Expressão regular para validar o CEP.
-                    var validacep = /^[0-9]{8}$/;
-
-                    //Valida o formato do CEP.
-                    if (validacep.test(cep)) {
-
-                        //Preenche os campos com "..." enquanto consulta webservice.
-                        document.getElementById('rua').value = "...";
-                        document.getElementById('bairro').value = "...";
-                        document.getElementById('cidade').value = "...";
-                        document.getElementById('uf').value = "...";
-
-                        //Cria um elemento javascript.
-                        var script = document.createElement('script');
-
-                        //Sincroniza com o callback.
-                        script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
-
-                        //Insere script no documento e carrega o conteúdo.
-                        document.body.appendChild(script);
-
-                    } //end if.
-                    else {
-                        //cep é inválido.
-                        limpa_formulário_cep();
-                        alert("Formato de CEP inválido.");
-                    }
-                } //end if.
-                else {
-                    //cep sem valor, limpa formulário.
-                    limpa_formulário_cep();
-                }
-            }
-            ;
-
-        </script>
-    </head>
-
-    <body>
-
-        <section id="container" >
-            <!--CABEÇALHO-->
-
-            <section id="main-content">
-                <section class="wrapper">
-                    <h3><i class="fa fa-angle-right"></i> Cadastro Administrador</h3>
-
-                    <div class="alert <%=classe%>">
-                        <%=msg%>
-                    </div>
-                    <form action="../../UploadWS" method="post" enctype="multipart/form-data">
-
-                        <!-- BASIC FORM ELELEMNTS -->
-                        <div class="row mt">
-                            <div class="col-lg-12">
-                                <div class="form-panel">
-
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Código</label>
-                                        <div class="col-sm-10">
-                                            <input type="text"  name="txtAdminCodigo" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Nome</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="txtAdminNome" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Sobrenome</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="txtAdminSobrenome" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Cpf</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="txtAdminCpf" class="form-control">
-                                            <span class="help-block">Ex.: 00011122233</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Data de Nascimento</label>
-                                        <div class="col-sm-10">
-                                            <input type="date"  name="txtAdminDataNasc"  class="form-control" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Cep:</label>
-                                        <div class="col-sm-10">
-                                            <input name="cep" type="text" id="cep" value="" class="form-control" maxlength="9"
-                                                   onblur="pesquisacep(this.value);" />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Rua:</label>
-                                        <div class="col-sm-10">
-                                            <input name="rua" type="text" id="rua" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Número</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="numero" class="form-control">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Bairro:</label>
-                                        <div class="col-sm-10">
-                                            <input name="bairro" type="text" id="bairro" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Cidade:</label>
-                                        <div class="col-sm-10">
-                                            <input name="cidade" type="text" id="cidade" class="form-control">
-                                        </div>             
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Estado:</label>
-                                        <div class="col-sm-10">
-                                            <input name="uf" type="text" id="uf" class="form-control">
-                                        </div>           
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="txtAdminTelefone" class="form-control">
-                                            <span class="help-block">Ex.: 00111223344</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Sexo</label>
-                                        <div class="col-sm-10">
-                                            <select name="txtAdminSexo" class="form-control" required/>
-                                                <option value="M">Masculino</option>
-                                                <option value="F">Feminino</option>
-                                            </select>
-                                        </div>  
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Email</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="txtAdminEmail" class="form-control">
-                                            <span class="help-block">Ex.: fulano@gmail.com </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-sm-2 col-sm-2 control-label">Senha</label>
-                                        <div class="col-sm-10">
-                                            <input type="password" name="txtAdminSenha" class="form-control">
-                                            <span class="help-block">Ex.: 12345678 </span>
-                                        </div>
-                                    </div>
-
-
-
-
-
-
-
-
-                                </div><!-- col-lg-12-->   
-
-                            </div><!-- /row -->
-
-                            <div class="showback">
-                                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Cadastrar">
-                            </div><!--/showback -->
-                    </form>
-
-                </section><! --/wrapper -->
-            </section><!-- /MAIN CONTENT -->
-
-            <!--main content end-->
-            <!--footer start-->
-            <footer class="site-footer">
-                <div class="text-center">
-                    2019 - Tainá Pacheco Morais
-                    <a href="form_component.html#" class="go-top">
-                        <i class="fa fa-angle-up"></i>
-                    </a>
+                <div class="alert <%=classe%>">
+                    <%=msg%>
                 </div>
-            </footer>
-            <!--footer end-->
-        </section>
+                <form action="../../UploadWS" method="post" enctype="multipart/form-data">
 
-        
-    </body>
+                    <!-- BASIC FORM ELELEMNTS -->
+                    <div class="row mt">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="col-sm-1">Código</label>
+                                <div class="col-sm-11">
+                                    <input type="text"  name="txtAdminCodigo" class="form-control">
+                                </div>
+                                </br></br>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1">Nome</label>
+                                <div class="col-sm-4">
+                                    <input type="text" name="txtAdminNome" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1">Sobrenome</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="txtAdminSobrenome" class="form-control">
+                                </div>
+                                </br></br>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1">Cpf</label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="txtAdminCpf" class="form-control" placeholder="Ex.: 00011122233" >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1">Data de Nascimento</label>
+                                <div class="col-sm-5">
+                                    <input type="date"  name="txtAdminDataNasc"  class="form-control" />
+                                </div>
+                                </br></br>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1">Cep:</label>
+                                <div class="col-sm-5">
+                                    <input name="cep" type="text" id="cep" value="" class="form-control" maxlength="9"
+                                           onblur="pesquisacep(this.value);" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1">Bairro:</label>
+                                <div class="col-sm-5">
+                                    <input name="bairro" type="text" id="bairro" class="form-control">
+                                    </br>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1">Rua:</label>
+                                <div class="col-sm-8">
+                                    <input name="rua" type="text" id="rua" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1">Número</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="numero" class="form-control">
+                                    </br>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1">Cidade:</label>
+                                <div class="col-sm-5">
+                                    <input name="cidade" type="text" id="cidade" class="form-control">
+                                </div>             
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1">Estado:</label>
+                                <div class="col-sm-5">
+                                    <input name="uf" type="text" id="uf" class="form-control">
+                                    </br>
+                                </div> 
+
+                            </div></br></br>
+
+                            <div class="form-group">
+                                <label class="col-sm-1">Telefone</label>
+                                <div class="col-sm-5">
+                                    <input type="text" name="txtAdminTelefone" class="form-control" placeholder="Ex.: 00111223344">
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1">Sexo</label>
+                                <div class="col-sm-5">
+                                    <select name="txtAdminSexo" class="form-control" required/>
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select></br>
+                                </div>  
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1">Email</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="txtAdminEmail" class="form-control" placeholder="Ex.: fulano@gmail.com">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1">Senha</label>
+                                <div class="col-sm-4">
+                                    <input type="password" name="txtAdminSenha" class="form-control" placeholder="Ex.: 12345678">
+                                    </br>
+                                </div>
+                            </div>
+
+                        </div><!-- col-lg-12-->   
+
+                    </div><!-- /row -->
+
+                    <div>
+                        <input type="submit" class="btn btn-primary btn-lg btn-block" value="Cadastrar">
+                    </div><!--/showback -->
+                </form>
+
+            </section><! --/wrapper -->
+        </section><!-- /MAIN CONTENT -->
+
+        <!--main content end-->
+        <!--footer start-->
+        <footer class="site-footer">
+            <div class="text-center">
+                2019 - Tainá Pacheco Morais
+                <a href="form_component.html#" class="go-top">
+                    <i class="fa fa-angle-up"></i>
+                </a>
+            </div>
+        </footer>
+        <!--footer end-->
+    </section>
+
+
+</body>
 </html>

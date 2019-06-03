@@ -53,9 +53,9 @@
                                         <tr>
                                             <th><i class="fa fa-hospital-o"></i> Nome - Sobrenome</th>
                                             <th><i class="fa fa-map-marker"></i> Cidade/Estado</th>
-                                            <th><i class="fa fa-map-marker"></i> Endereço-Numero</th>
-                                            <th><i class="fa fa-list-alt"></i>CPF</th>
-                                            <th><i class="fa fa-table"></i>Data de Nascimento</th>
+                                            <th><i class="fa fa-map-marker"></i> Endereço/Bairro</th>
+                                            <th><i class="fa fa-plus-square"></i>CPF</th>
+                                            <th><i class="fa fa-plus-square"></i>Data de Nascimento</th>
                                             <th><i class="fa fa-phone"></i> Telefone</th>
                                            
                                             <th></th>
@@ -68,9 +68,9 @@
                                             %>
 
 
-                                            <td><%=itema.getAdminnome()%>  <%=itema.getAdminsobrenome()%></td>
+                                            <td><%=itema.getAdminnome()%> / <%=itema.getAdminsobrenome()%></td>
                                             <td class="hidden-phone"><%=itema.getAdmincidade()%> / <%=itema.getAdminestado()%></td>
-                                            <td><%=itema.getAdminrua()%> - <%=itema.getAdminnumero()%></td>
+                                            <td><%=itema.getAdminrua()%> / <%=itema.getAdminnumero()%></td>
                                             <td><%=itema.getAdmincpf()%></td>
                                             <td><%=StormData.formata(itema.getAdmindatanasc())%></td>
                                             <td><%=itema.getAdmintelefone()%></td>
