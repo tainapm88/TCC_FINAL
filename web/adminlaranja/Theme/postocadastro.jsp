@@ -224,8 +224,8 @@ Terça-feira:
 Quarta-feira:
 Quinta-feira:
 Sexta-feira:
-Sábado:
-Domingo:
+Finais de semana:
+Exceções:
                                         </textarea>
                                        </br>
                                     </div>

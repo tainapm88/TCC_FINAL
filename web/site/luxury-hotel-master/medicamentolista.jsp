@@ -52,11 +52,14 @@
     h5{
         font-size: 14px;
     }
-    p{
-        border-radius: 20px;
-        border-width: 2px;
-
-    }
+    #pesq{
+          border-radius: 100px;
+        }
+     p{
+            font-family: URW Chancery;
+            font-size: 500px;
+               
+        }
 
 </style>
 
@@ -74,24 +77,10 @@
             <li class="nav-item">
                 </br>
                 <form action="#" method="post">
-                    <div>
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group" >
-                                    <input type="text" name="txtFiltro" class="form-control" placeholder="Nome do medicamento...">
-                                </div>
-                            </div>
-                            
-
-                            <div class="col-md-2">
-                                <div class="form-group" >
-                                    <form action="detalhemed.jsp">
-                                        <button id="botao" class="btn btn-primary">Pesquisar</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="input-group-btn"></span>
+                   <div class="form-group input-group">
+                        <input id="pesq" type="text" name="txtFiltro" class="form-control" placeholder="Nome do medicamento...">
+                            <button id="botao" type="submit" class="btn btn-primary">Pesquisar</button>
+                            <span class="input-group-btn"></span>
                     </div>
                 </form>                    
             </li>

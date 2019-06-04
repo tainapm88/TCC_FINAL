@@ -28,7 +28,7 @@
             color: #FFD777;
         }
         #botao{
-            width: 200px;
+            width: 210px;
             height: 70px;
             border-width: 2px;
             border-style: solid;
@@ -40,6 +40,14 @@
             font-weight: 200; 
             text-align: center; 
             padding-top: 20px;
+        }
+        h1{
+           font-family: "Stencil Std", fantasy;
+           font-size: 600px;
+        }
+        
+        p{
+            font-family: "Optima", sans-serif;
         }
         
 

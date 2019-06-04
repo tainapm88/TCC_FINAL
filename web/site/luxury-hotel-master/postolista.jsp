@@ -14,6 +14,14 @@
         }
         else{
             plista = pdao.listar(request.getParameter("txtFiltro"));
+            if (plista.isEmpty()){
+                     %>
+                        <script>
+                            alert('Não existem postos nesta cidade');
+                            window.location.href = "postocidadepesquisa.jsp";
+                        </script>
+                    <%    
+                }
         }
         }else {
         //verifico se é excluir
@@ -26,6 +34,9 @@
         }
         plista = pdao.listar();
     }
+    
+    
+        
 
 %>
 
@@ -51,12 +62,21 @@
         width: 1100px;
         
     }
+    #pesq{
+          border-radius: 100px;
+        }
     h4{
         font-size: 18px;
     }
     h5{
         font-size: 14px;
     }
+    
+    p{
+        font-family: URW Chancery;
+        font-size: 500px;
+    }
+    
 </style>
 
 <body>
@@ -68,15 +88,15 @@
         <div class="container" text="center">
 
             <center>
-                <p>Lista solicitada de postos da cidade de <%=request.getParameter("txtPostoNome")%></p>
+                <p>Lista solicitada de postos da cidade pesquisada</p>
 
             </center>
             <li class="nav-item">
                 </br>
                 <form action="postolista.jsp" method="post">
                     <div class="form-group input-group">
-                        <input type="hidden" name="txtFiltro" value="<%=request.getParameter("txtFiltro")%>"> 
-                        <input type="text" class="form-control" name="txtFiltro2" placeholder="Pesquisa por nome do posto">
+                        <input id="pesq" type="hidden" name="txtFiltro" value="<%=request.getParameter("txtFiltro")%>"> 
+                        <input id="pesq" type="text" class="form-control" name="txtFiltro2" placeholder="Pesquisa por nome do posto">
                         
                             <button id="botao" type="submit" class="btn btn-primary">Pesquisar</button>
                        
@@ -89,7 +109,7 @@
     <div class="container">
         <div class="row mb-10 mb-2">
             <%for (Posto posto : plista) {
-
+                
                 %>
           <div class="col-md-3">
             <div class="post-entry">

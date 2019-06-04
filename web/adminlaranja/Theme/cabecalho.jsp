@@ -1,9 +1,3 @@
-<% 
-    if(session.getAttribute("admin").equals("")){
-        response.sendRedirect("..adminlogin.jsp");
-        return;
-    }
-%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +36,7 @@
                 <a href="index.jsp" class="logo"><b>FACILITASUS</b></a>    
                     <div class="top-menu">
                 	<ul class="nav pull-right top-menu">
-                            <li><a class="logout" href="adminlogin.jsp?acao=sair">SAIR</a></li>
+                            <li><a class="logout" href="adminlogin.jsp">SAIR</a></li>
                         </ul>
                     </div>
             </header>

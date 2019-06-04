@@ -1,6 +1,7 @@
 <%@page import="modelo.Posto"%>
 <%@page import="Dao.PostoDAO"%>
 <%@page import="java.util.List"%>
+<%@include file="cabecalho.jsp" %>
 
 <%
     Posto obj = new Posto();
@@ -30,7 +31,7 @@
         }
         #botao{
             width: 200px;
-            height: 80px;
+            height: 60px;
             border-width: 2px;
             border-style: solid;
             display: inline-block;
@@ -39,25 +40,26 @@
             color: white;
             font-family: "Rubik", arial, sans-serif;
             font-weight: 300; 
-            
-            #pesq{
+        }    
+        #pesq{
                 border-radius: 200px;
-            }
-            
-            
-            
         }
+        
+        p{
+            font-family: URW Chancery;
+            font-size: 500px;
+               
+        }
+            
+            
+       
 
     </style>
 
 
 
 <!doctype html>
-  <body>
-    
-      <%@include file="cabecalho.jsp" %>
-
-    
+  <body>   
       <section class="site-hero overlay" data-stellar-background-ratio="0.5" >
           </br>
           </br>
