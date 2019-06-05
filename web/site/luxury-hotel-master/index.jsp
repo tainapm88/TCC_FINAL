@@ -60,7 +60,7 @@
                         <div class="mb-5 element-animate">
                             <h1>FacilitaSUS</h1>
                             </br>
-                            <p>Sistema para fácil acesso na sua busca por</p>
+                            <p>Sistema que facilitará sua busca por</p>
                                 <p>medicamentos e postos na Rede SUS</p>
                             </br>
                             <p>
