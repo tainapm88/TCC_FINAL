@@ -28,22 +28,21 @@
             color: #FFD777;
         }
         #botao{
-            width: 210px;
-            height: 70px;
+            width: 250px;
+            height: 90px;
             border-width: 2px;
             border-style: solid;
             display: inline-block;
-            border-radius: 25px;        
+            border-radius: 50px;        
             background-color: #AE0000;
             color: white;
             font-family: "Rubik", arial, sans-serif;
             font-weight: 200; 
             text-align: center; 
-            padding-top: 20px;
+            padding-top: 30px;
         }
         h1{
            font-family: "Stencil Std", fantasy;
-           font-size: 600px;
         }
         
         p{
@@ -60,7 +59,10 @@
 
                         <div class="mb-5 element-animate">
                             <h1>FacilitaSUS</h1>
-                            <p>Breve descrição do sistema</p>
+                            </br>
+                            <p>Sistema para fácil acesso na sua busca por</p>
+                                <p>medicamentos e postos na Rede SUS</p>
+                            </br>
                             <p>
                                 <a id="botao" href="postocidadepesquisa.jsp" class="btn btn-primary">Postos</a>
                                 <a id="botao" href="medicamentolista.jsp" class="btn btn-primary">Medicamentos</a>
