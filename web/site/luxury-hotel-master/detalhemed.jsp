@@ -31,6 +31,10 @@
         li{
             color: #AE0000;
         }
+        h6{
+            font-size: 15px;
+            color: #AE0000;
+        }
 </style>  
     
 
@@ -91,7 +95,7 @@
                                     </div>
 
                                     <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                                        <h5><%=medicamentos.getMedbula()%></h5>
+                                        <h6><%=medicamentos.getMedbula()%></h6>
                                     </div>
                                 </div>
                 <!--<p>Breve descrição sobre o posto</p>!-->

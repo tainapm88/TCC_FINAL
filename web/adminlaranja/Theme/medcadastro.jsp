@@ -123,7 +123,7 @@
                           <div class="form-group">
                                 <label class="col-sm-1">Bula</label>
                                     <div class="col-sm-11">
-                                        <textarea  name="txtMedBula" id="message" class="form-control " cols="30" rows="8">
+                                        <textarea  name="txtMedBula" id="message" class="form-control " cols="30" rows="8">Sugestao de site para busca de bulas: https://www.ache.com.br/produtos/bula-rapida/
                                         </textarea>
                                         </br>
                                     </div>
