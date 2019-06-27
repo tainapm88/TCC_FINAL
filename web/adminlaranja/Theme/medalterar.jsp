@@ -119,7 +119,7 @@
                              <label class="col-sm-1">Posto</label>
                              <div class="col-sm-11">
 
-                                 <select type="text" name="txtPostoNome"  class="form-control" required placeholder="Selecione">
+                                 <select type="text" name="txtPostoNome"  class="form-control" readonly placeholder="Selecione">
                                    
                                          <%
                                              for (Posto itemp : plistar) {

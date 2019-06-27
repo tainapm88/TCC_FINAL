@@ -58,7 +58,7 @@
                     <div class="col-md-12 text-center">
 
                         <div class="mb-5 element-animate">
-                            <h1>FacilitaSUS</h1>
+                            <h1>FacilitaMED</h1>
                             </br>
                             <p>Sistema que facilitará sua busca por</p>
                                 <p>medicamentos e postos na Rede SUS</p>

@@ -33,7 +33,7 @@
 
   <section id="container" >
             <header class="header black-bg">
-                <a href="index.jsp" class="logo"><b>FACILITASUS</b></a>    
+                <a href="index.jsp" class="logo"><b>FACILITAMED</b></a>    
                     <div class="top-menu">
                 	<ul class="nav pull-right top-menu">
                             <li><a class="logout" href="adminlogin.jsp">SAIR</a></li>
@@ -86,7 +86,7 @@
                   </li>
 
                   
-                  <li class="sub-menu">
+                 <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-user"></i>
                           <span>Perfil</span>
@@ -96,8 +96,7 @@
                       </ul>
                   </li>
               </ul>
-              <!-- sidebar menu end-->
-          </div>
+        </div>
       </aside>
 
   </section>

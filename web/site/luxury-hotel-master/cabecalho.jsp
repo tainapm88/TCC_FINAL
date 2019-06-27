@@ -26,7 +26,7 @@
      
       <nav class="navbar navbar-expand-md navbar-dark bg-light">
         <div class="container">
-          <a class="navbar-brand" href="index.jsp">FACILITASUS</a>
+          <a class="navbar-brand" href="index.jsp">FACILITAMED</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -42,6 +42,10 @@
               
                 <li class="nav-item">
                     <a class="nav-link active" href="medicamentolista.jsp">Medicamentos</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link active" href="medicamentolista.jsp">Usuário</a>
                 </li>
               
               

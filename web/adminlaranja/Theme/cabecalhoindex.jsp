@@ -32,7 +32,7 @@
 
   <section id="container" >
         <header class="header black-bg">
-            <a href="index.jsp" class="logo"><b>FACILITASUS</b></a>
+            <a href="index.jsp" class="logo"><b>FACILITAMED</b></a>
             <div class="top-menu">
                 	<ul class="nav pull-right top-menu">
                             <li><a class="logout" href="adminlogin.jsp">SAIR</a></li>
